@@ -1,4 +1,5 @@
 # KUHOME
+<<<<<<< Updated upstream
 kuy Ness Yai Kub Pak
 =============================
 หน้าหลักที่เป็นตัวกลาง ตั้งชื่อเป็น
@@ -22,3 +23,8 @@ _home_content.php
 _home_men.php
 _room.php
 _room_men.php
+=======
+project ku home 
+test commit
+test girkraken
+>>>>>>> Stashed changes
