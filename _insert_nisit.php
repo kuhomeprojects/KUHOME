@@ -36,22 +36,6 @@ include '_navbar_admin.php';
 
 </div>
 
-<div class="container-fluid" style="margin-top: 10px; margin-bottom: 150px;">
-    <div class="card">
-        <form method="post">
-            <div class="card-header">
-                <nav aria-label="breadcrumb  bg-dark">
-                    <h5><b><i class="fa fa-star"></i> กิจกรรมล่าสุด</b></h5>
-                </nav>
-            </div>
-            <div class="card-body">
-            </div>
-            <div class="footer bg-info text-white">
-                <div class="container-fluid text-right">
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+
 </body>
 </html>
