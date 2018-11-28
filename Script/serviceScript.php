@@ -39,6 +39,8 @@
             format: 'dd/mm/yyyy'
         });
 
+
+
         $("#emergencyTel").mask("999-9999999");
         $("#submitButton").attr("disabled", "disabled");
         $("#installCost").attr("disabled", "disabled");

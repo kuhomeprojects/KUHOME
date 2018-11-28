@@ -24,12 +24,6 @@ if (isset($_POST['username'])) {
     if ($row) {
         $_SESSION['username'] = $row['username'];
         $_SESSION['name'] = $row['name'];
-        $_SESSION['tel'] = $row['tel'];
-        $_SESSION['type'] = $row['type'];
-        $_SESSION['address'] = $row['address'];
-        $_SESSION['full_type'] = $row['full_type'];
-        $_SESSION['status'] = $row['status'];
-        $_SESSION['full_status'] = $row['full_status'];
     } else {
         $msg = "<span class='text-danger'><i class='fa fa-times'></i> เข้าสู่ระบบไม่สำเร็จ กรุณาตรวจสอบ username/password อีกครั้ง</span>";
     }
@@ -37,14 +31,15 @@ if (isset($_POST['username'])) {
 
 }
 if (isset($_SESSION['username'])) {
-    header("location: home.php");
+    header("location: _home.php");
 }
 ?>
 
 <div class="container" align="center" style="padding-top: 100px;">
     <div class="card" style="width: 500px;">
         <form method="post" action="index.php">
-            <img class="card-img-top" src="img/KCI_logo-620x400.jpg" width="" alt="Card image cap">
+            <!--<img class="card-img-top"
+                 width="" alt="Card image cap">-->
             <div class="card-footer">
                 <div class="form-group" align="left">
 

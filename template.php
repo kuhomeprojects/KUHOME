@@ -1,6 +1,6 @@
 <?php
-include 'connect.php';
-include 'checkSession.php';
+include '__connect.php';
+include '__checkSession.php';
 ?>
 <!Document>
 <html>
@@ -20,7 +20,7 @@ include 'checkSession.php';
         <div class="row">
 
             <div class="col-4 col-lg-4 col-sm-4 col-md-4">
-                <img class=" float-right" src="img/KCI_logo-620x400.png" height="200">
+                <img class=" float-right"  height="200">
             </div>
 
             <div class="col-8 col-lg-8 col-sm-8 col-md-8">
