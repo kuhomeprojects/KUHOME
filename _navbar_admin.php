@@ -16,10 +16,13 @@
                     <a class="dropdown-item" href="fix.php"><i class="fa fa-wrench"></i> <span>ซ่อม</span></a>
                 </div>
             </li>-->
-<!--             
+
             <li class="nav-item">
-                <a class="nav-link" href="report.php">ตรวจสอบ</a>
+                <a class="nav-link" href="_insert_nisit.php">เพิ่มนิสิต</a>
             </li>
+
+<!--             
+            
             <li class="nav-item">
                 <a class="nav-link" href="news.php">ข่าวสารกิจกรรม</a>
             </li>
