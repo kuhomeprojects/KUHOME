@@ -6,9 +6,6 @@
     </button>
     <div id="navbarNavDropdown" class="navbar-collapse collapse">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="product.php">สินค้า</a>
-            </li>
            <!-- <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="service.php" id="serviceLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
@@ -19,15 +16,7 @@
                     <a class="dropdown-item" href="fix.php"><i class="fa fa-wrench"></i> <span>ซ่อม</span></a>
                 </div>
             </li>-->
-            <li class="nav-item">
-                <a class="nav-link" href="service.php">บริการติดตั้ง</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="customer.php">ลูกค้า</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="import.php">นำเข้าสินค้า</a>
-            </li>
+<!--             
             <li class="nav-item">
                 <a class="nav-link" href="report.php">ตรวจสอบ</a>
             </li>
@@ -39,7 +28,7 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="account.php">ผู้ใช้ระบบ</a>
-            </li>
+            </li> -->
         </ul>
         <ul class="navbar-nav">
 
