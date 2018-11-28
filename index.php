@@ -1,5 +1,5 @@
 <?php
-include 'connect.php';
+include '__connect.php';
 ?>
 
 
@@ -7,7 +7,7 @@ include 'connect.php';
 <html>
 
 <head>
-    <?php include 'header.php'; ?>
+    <?php include '__header.php'; ?>
     <style>
     </style>
 </head>

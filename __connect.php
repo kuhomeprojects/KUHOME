@@ -5,7 +5,7 @@ header('Access-Control-Allow-Origin: *');
 $db_host = "localhost";
     $db_username = "root";
     $db_password = "";
-    $db_name = "craneci";
+    $db_name = "kuhome";
     $conn = @mysqli_connect("$db_host", "$db_username", "$db_password", "$db_name");
     if (!$conn) {
         echo "Can't connect with MySQL" . mysqli_connect_errno() . "" . mysqli_connect_error();

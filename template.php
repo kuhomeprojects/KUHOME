@@ -6,7 +6,7 @@ include 'checkSession.php';
 <html>
 
 <head>
-    <?php include 'header.php'; ?>
+    <?php include '__header.php'; ?>
     <script>
 
     </script>
@@ -39,31 +39,17 @@ include 'checkSession.php';
 
 </div>
 
-<?php
-
-if ($_SESSION['type'] == 'A') {
-    include "navbar_admin.php";
-    $sql = 'SELECT i.*,u.name from information i inner join user u on u.username = i.info_owner order by info_date desc limit 1';
-    $query = mysqli_query($conn, $sql);
-    $currentNew = mysqli_fetch_assoc($query);
-}
-?>
 <div class="container-fluid" style="margin-top: 10px; margin-bottom: 150px;">
     <div class="card">
-        <form action="newsCreatePage.php" method="post">
+        <form >
             <div class="card-header">
                 <nav aria-label="breadcrumb  bg-dark">
                     <h5><b><i class="fa fa-star"></i> กิจกรรมล่าสุด</b></h5>
                 </nav>
             </div>
             <div class="card-body">
-                <?php echo base64_decode($currentNew['info_content']); ?>
             </div>
             <div class="footer bg-info text-white">
-                <div class="container-fluid text-right">
-                    <strong>ประกาศโดย</strong> <?php echo $currentNew['name']; ?>
-                    <strong>วันที่</strong> <?php echo $currentNew['info_date']; ?>
-                </div>
             </div>
         </form>
     </div>
