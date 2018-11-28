@@ -1,7 +1,5 @@
 # KUHOME
-<<<<<<< Updated upstream
 kuy Ness Yai Kub Pak
-=============================
 หน้าหลักที่เป็นตัวกลาง ตั้งชื่อเป็น
 connect.php -> __connect.php
 header.php -> __header.php
@@ -24,7 +22,3 @@ _home_men.php
 _room.php
 _room_men.php
 =======
-project ku home 
-test commit
-test girkraken
->>>>>>> Stashed changes
