@@ -17,7 +17,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="customer.php">ลูกค้า</a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link" href="import.php">นำเข้าสินค้า</a>
             </li>
