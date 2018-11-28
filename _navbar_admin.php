@@ -6,26 +6,23 @@
     </button>
     <div id="navbarNavDropdown" class="navbar-collapse collapse">
         <ul class="navbar-nav mr-auto">
+           <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="service.php" id="serviceLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    บริการ
+                </a>
+                <div class="dropdown-menu" style="cursor: pointer;" aria-labelledby="serviceLink">
+                    <a class="dropdown-item" href="service.php"><i class="fa fa-cogs"></i> <span>ติดตั้ง</span></a>
+                    <a class="dropdown-item" href="fix.php"><i class="fa fa-wrench"></i> <span>ซ่อม</span></a>
+                </div>
+            </li>-->
 
             <li class="nav-item">
-                <a class="nav-link" href="product.php">สินค้า</a>
+                <a class="nav-link" href="_insert_nisit.php">เพิ่มนิสิต</a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link" href="service.php">บริการติดตั้ง</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="customer.php">ลูกค้า</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="import.php">นำเข้าสินค้า</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="report.php">ตรวจสอบ</a>
-            </li>
-
+<!--             
+            
             <li class="nav-item">
                 <a class="nav-link" href="news.php">ข่าวสารกิจกรรม</a>
             </li>
@@ -36,8 +33,12 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="account.php">ผู้ใช้ระบบ</a>
+<<<<<<< HEAD
             </li>
 
+=======
+            </li> -->
+>>>>>>> develop
         </ul>
         <ul class="navbar-nav">
 
