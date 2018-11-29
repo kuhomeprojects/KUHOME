@@ -18,7 +18,7 @@
             </li>-->
 
             <li class="nav-item">
-                <a class="nav-link" href="_insert_nisit.php">เพิ่มนิสิต</a>
+                <a class="nav-link" href="_nisit.php">รายชื่อนิสิต</a>
             </li>
 
 <!--             
@@ -38,7 +38,7 @@
 
 =======
             </li> -->
->>>>>>> develop
+
         </ul>
         <ul class="navbar-nav">
 
