@@ -45,7 +45,7 @@ CREATE TABLE `room` (
 -- Indexes for table `room`
 --
 ALTER TABLE `room`
-  ADD PRIMARY KEY (`id`,`tower`);
+  ADD PRIMARY KEY (room_no,tower_no);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
