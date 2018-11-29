@@ -24,6 +24,11 @@
         display: block;
     }
 
+    @font-face {
+        font-family: headers;font-family: headers;
+        src: url("font/FC Lamoon/FC Lamoon Bold ver 1.00.ttf");
+    }
+
     .overlay {
         position: absolute;
         top: 0;
