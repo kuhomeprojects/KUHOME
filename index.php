@@ -30,6 +30,7 @@ if (isset($_POST['username'])) {
     if ($row) {
         $_SESSION['username'] = $row['username'];
         $_SESSION['name'] = $row['name'];
+        $_SESSION['type'] = $isAdmmin;
     } else {
         $msg = "<span class='text-danger'><i class='fa fa-times'></i> เข้าสู่ระบบไม่สำเร็จ กรุณาตรวจสอบ username/password อีกครั้ง</span>";
     }

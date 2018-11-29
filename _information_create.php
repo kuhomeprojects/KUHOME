@@ -34,7 +34,7 @@ if(isset($_POST['insertInfo'])){
 </head>
 <body>
 <?php
-include '_navbar_admin.php';
+include '__navbar_admin.php';
 ?>
 <script>
     function addTag(tag) {

@@ -13,7 +13,7 @@ include '__checkSession.php';
 </head>
 <body>
 <?php
-include '_navbar_admin.php';
+include '__navbar_admin.php';
 $sql = 'SELECT i.*,u.name from information i inner join user u on u.username = i.info_owner order by info_id desc limit 1';
 $query = mysqli_query($conn,$sql);
 $currentNew = mysqli_fetch_assoc($query);

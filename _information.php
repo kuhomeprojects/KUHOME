@@ -31,14 +31,16 @@ if (isset($_POST['insertInfo'])) {
 </head>
 <body>
 <?php
-include '_navbar_admin.php';
+include '__navbar_admin.php';
 ?>
 <script>
     $(document).ready(() => {
+
         $("#infoList").dataTable();
         $("#reportListTable").dataTable();
         $("#reportHeader").click();
         $("#infoHeader").click();
+
 
     })
 </script>

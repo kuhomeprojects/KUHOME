@@ -26,7 +26,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" data-toggle="modal" onclick="initReportModal()" data-target="#reportModal"><i class="fa fa-exclamation-triangle"></i> แจ้งปัญหา</a>
-                    <a class="dropdown-item" data-toggle="modal"  data-target="#profileModal">
+                    <a class="dropdown-item" data-toggle="modal"  onclick="initProfileModal()" data-target="#profileModal">
                         <i class="fa fa-user-circle-o"></i> Profile</a>
                 </div>
             </li>
@@ -47,4 +47,5 @@
     </p>
 </nav>
 
-<?php include '_report_modal.php'; ?>
+<?php include '__report_modal.php'; ?>
+<?php include '__profile_modal.php'; ?>

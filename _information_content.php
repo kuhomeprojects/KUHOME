@@ -13,7 +13,7 @@ include '__checkSession.php';
 </head>
 <body>
 <?php
-include '_navbar_admin.php';
+include '__navbar_admin.php';
 ?>
 <?php
     $id = $_GET['id'];
