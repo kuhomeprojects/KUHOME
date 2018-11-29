@@ -20,7 +20,7 @@
 
             </li>
 
-            </li> -->
+            </li>
 
         </ul>
         <ul class="navbar-nav">
