@@ -14,9 +14,12 @@ include '__checkSession.php';
 <body>
 <?php
 include '__navbar_admin.php';
+<<<<<<< .merge_file_a09312
 $sql = 'SELECT i.*,u.name from information i inner join user u on u.username = i.info_owner order by info_id desc limit 1';
 $query = mysqli_query($conn,$sql);
 $currentNew = mysqli_fetch_assoc($query);
+=======
+>>>>>>> .merge_file_a04496
 ?>
 <div class="container-fluid" style="margin-top: 10px;">
 
