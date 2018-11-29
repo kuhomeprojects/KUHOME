@@ -230,12 +230,13 @@ include '__navbar_admin.php';
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
-                                        <input type="radio" name="sex" id="sex" value="male">
+                                        <input type="radio" name="sex" id="sex" value="m">
                                     </div>
                                 </div>
                                 <output type="text" class="form-control"> ชาย</output>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
+                                        <input type="radio" name="sex" id="sex" value="f">
                                     </div>
                                 </div>
                                 <output type="text" class="form-control"> หญิง</output>
