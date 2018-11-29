@@ -6,10 +6,13 @@ include '__checkSession.php';
 <html>
 
 <head>
+<<<<<<< HEAD
 <<<<<<< .merge_file_a04848
     <?php include '__header.php'; ?>
     <script>
 =======
+=======
+>>>>>>> develop
     <?php include '__header.php';
 
     $code = "";
@@ -89,7 +92,11 @@ include '__checkSession.php';
         $sql = "INSERT INTO `student` (`code`, `name`, `level`, `major`, `sex`, `birthdate`, `ID`, `address`, `tel`, `picture`, `parent_name`, `teacher_name`, `username`, `password`, `parent_tel`, `department`) VALUES ('$code', '$name', '$level', '$major', '$sex', '$birthdate', '$ID', '$address', '$tel','$picture' ,'$parent_name', '$teacher_name', '$username', '$password', '$parent_tel', '$department');";
         $query = mysqli_query($conn, $sql);
         if ($query) {
+<<<<<<< HEAD
 echo '<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+=======
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+>>>>>>> develop
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                         </button>
@@ -147,7 +154,10 @@ echo '<div class="alert alert-success alert-dismissible fade show" role="alert" 
             });
         });
 
+<<<<<<< HEAD
 >>>>>>> .merge_file_a17500
+=======
+>>>>>>> develop
 
     </script>
 </head>
@@ -157,6 +167,7 @@ include '__navbar_admin.php';
 ?>
 <div class="container-fluid" style="margin-top: 10px;">
 
+<<<<<<< HEAD
 <<<<<<< .merge_file_a04848
     <div class="jumbotron jumbotron-fluid" style='background-image: url("img/Gear-BG-4.jpg"); '>
 
@@ -179,6 +190,8 @@ include '__navbar_admin.php';
 
 
 =======
+=======
+>>>>>>> develop
     <!--    <div class="jumbotron jumbotron-fluid" style='background-image: url("img/Gear-BG-4.jpg"); '>-->
     <div class="jumbotron jumbotron-fluid">
 
@@ -222,13 +235,21 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>ยืนยันรหัสผ่าน :</label>
+<<<<<<< HEAD
                             <input type="password" name="conPassword" id="conPassword" class="form-control" value="<?php echo $Password; ?>">
+=======
+                            <input type="password" name="conPassword" id="conPassword" class="form-control" value="<?php echo $password; ?>">
+>>>>>>> develop
                         </div>
                     </div>
                 </div>
                 <hr>
 
+<<<<<<< HEAD
                 
+=======
+
+>>>>>>> develop
                 <div class="row">
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
@@ -257,13 +278,21 @@ include '__navbar_admin.php';
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
+<<<<<<< HEAD
                                         <input type="radio" name="sex" id="sex" value="male">
+=======
+                                        <input type="radio" name="sex" id="sex" value="m">
+>>>>>>> develop
                                     </div>
                                 </div>
                                 <output type="text" class="form-control"> ชาย</output>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
+<<<<<<< HEAD
                                         <input type="radio" name="sex" id="sex" value="female">
+=======
+                                        <input type="radio" name="sex" id="sex" value="f">
+>>>>>>> develop
                                     </div>
                                 </div>
                                 <output type="text" class="form-control"> หญิง</output>
@@ -354,15 +383,26 @@ include '__navbar_admin.php';
                     </div>
                 </div>
                 <hr>
+<<<<<<< HEAD
 <div class="row">
     <div class="col-2 col-sm-2 col-lg-2 col-md-2"></div>
+=======
+                <div class="row">
+                    <div class="col-2 col-sm-2 col-lg-2 col-md-2"></div>
+>>>>>>> develop
                     <button type="submit" name="insertNisit" class="btn btn-primary col-4 col-sm-4 col-lg-4 col-md-4 "><i class="fa fa-plus"></i> เพิ่มข้อมูลนิสิต
                     </button><span style="margin: 10px"></span>
                     <button onclick="window.history.go(-1);" type="button" class="btn btn-danger col-4 col-sm-4 col-lg-4 col-md-4 " ><i class="fa fa-times"></i> ยกเลิก
                     </button>
+<<<<<<< HEAD
     <div class="col-2 col-sm-2 col-lg-2 col-md-2"></div>
 
 </div>
+=======
+                    <div class="col-2 col-sm-2 col-lg-2 col-md-2"></div>
+
+                </div>
+>>>>>>> develop
 
             </form>
         </div>
@@ -370,6 +410,9 @@ include '__navbar_admin.php';
     </div>
 
 </div>
+<<<<<<< HEAD
 >>>>>>> .merge_file_a17500
+=======
+>>>>>>> develop
 </body>
 </html>

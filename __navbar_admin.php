@@ -11,6 +11,7 @@
     </button>
     <div id="navbarNavDropdown" class="navbar-collapse collapse">
         <ul class="navbar-nav mr-auto">
+<<<<<<< HEAD
 <<<<<<< .merge_file_a09488
 =======
            <!-- <li class="nav-item dropdown">
@@ -28,6 +29,8 @@
             <li class="nav-item">
                 <a class="nav-link" href="_nisit.php">รายชื่อนิสิต</a>
             </li>
+=======
+>>>>>>> develop
 
 <<<<<<< .merge_file_a09488
             <li class="nav-item">
@@ -46,13 +49,15 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="account.php">ผู้ใช้ระบบ</a>
-<<<<<<< HEAD
+
             </li>
 
-=======
-            </li> -->
+            </li>
 
+<<<<<<< HEAD
 >>>>>>> .merge_file_a09184
+=======
+>>>>>>> develop
         </ul>
         <ul class="navbar-nav">
 
