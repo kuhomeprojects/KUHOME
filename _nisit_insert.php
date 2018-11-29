@@ -236,7 +236,6 @@ include '__navbar_admin.php';
                                 <output type="text" class="form-control"> ชาย</output>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
-                                        <input type="radio" name="sex" id="sex" value="female">
                                     </div>
                                 </div>
                                 <output type="text" class="form-control"> หญิง</output>
