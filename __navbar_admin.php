@@ -15,6 +15,10 @@
                 <a class="nav-link" href="_information.php">ประชาสัมพันธ์</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="_booking.php">จองหอ</a>
+            </li>
+
 
             </li>
 

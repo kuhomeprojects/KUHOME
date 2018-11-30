@@ -173,7 +173,7 @@ include '__navbar_admin.php';
                                 <span class="input-group-btn">
                                       <span class="btn btn-sm btn-default btn-file btn-outline-info"><i
                                                   class="fa fa-image"></i> เลือกรูปภาพ
-                                           <input type="file" name="picture" id="picture" value="<?php echo $picture; ?>" >
+                                           <input type="file" name="picture" id="picture" value="" >
                                       </span>
                                 </span>
                             </div>
