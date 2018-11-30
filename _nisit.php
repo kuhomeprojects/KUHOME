@@ -7,7 +7,11 @@ include '__checkSession.php';
 
 <head>
     <?php include '__header.php'; ?>
-    <script></script>
+    <script>
+        $(document).ready(()=>{
+            $('#reportContentList').DataTable();
+        })
+    </script>
 </head>
 <body>
 <?php
@@ -15,15 +19,9 @@ include '__navbar_admin.php';
 ?>
 <div class="container-fluid" style="margin-top: 10px;">
 
-    <!--    <div class="jumbotron jumbotron-fluid" style='background-image: url("img/Gear-BG-4.jpg"); '>-->
     <div class="jumbotron jumbotron-fluid">
-        <script>
-            $(document).ready(()=>{
-                $('#reportContentList').DataTable();
-            })
-        </script>
-
-
+        <div style="width: 85%" class="mx-auto">
+            <a class="btn btn-sm btn-primary text-white" style="float: left" onclick="window.location = '_nisit_insert.php'"><i class="fa fa-plus"></i> เพิ่มรายชื่อนิสิต</a>
         <table id="reportContentList" class="table table-bordered rounded">
             <thead>
             <tr>
@@ -58,8 +56,8 @@ include '__navbar_admin.php';
             ?>
             </tbody>
         </table>
-     </div>
-
+    </div>
+    </div>
     </div>
 
 </div>
