@@ -148,6 +148,32 @@ include '__checkSession.php';
                         <strong>สำเร็จ!</strong> แก้ไขข้อมูลนิสิตแล้ว
                     </div>';
 
+            $sql = "SELECT * FROM `student` WHERE `code` = '$code'";
+            $result = mysqli_query($conn, $sql);
+            $row = mysqli_fetch_assoc($result);
+
+            if ($row) {
+                $code = $row['code'];
+                $name = $row['name'];
+                list($firstName, $lastname) = explode(" ", $name);
+                $level = $row['level'];
+                $major = $row['major'];
+                $sex = $row['sex'];
+                $birthdate = $row['birthdate'];
+                $ID = $row['ID'];
+                $address = $row['address'];
+                $tel = $row['tel'];
+                $picture = $row['picture'];
+                $showpicture = $row['picture'];
+                $parent_name = $row['parent_name'];
+                $teacher_name = $row['teacher_name'];
+                $username = $row['username'];
+                $password = $row['password'];
+                $parent_tel = $row['parent_tel'];
+                $department = $row['department'];
+            }
+
+
         }
     }
 
@@ -203,7 +229,6 @@ include '__checkSession.php';
             });
         });
 
-
     </script>
 </head>
 <body>
@@ -242,30 +267,51 @@ include '__navbar_admin.php';
                 </div>
 
                 <div class="row">
-                    <div class="col col-sm col-lg col-md">
+
+                    <?php
+                    if (isset($_GET['code'])) {
+                        echo "<div class='col col-sm col-lg col-md'>
+                        <div class='form-group'>
+                            <label>ชื่อเข้าใช้งาน :</label>
+                            <input name='username' id='username' class='form-control' value='$username' readonly>
+                        </div>
+                    </div>";
+                    } else {
+                        echo '<div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>ชื่อเข้าใช้งาน :</label>
-                            <input name="username" id="username" class="form-control" value="<?php echo $username; ?>">
+                            <input name="username" id="username" class="form-control" maxlength="20" minlength="8" required pattern="^[a-zA-Z0-9_.-]*$" placeholder="ชื่อผู้ใช้งานต้องมีตัวอักษรตั้งแต่ 8-20 ตัวอักษร">
                         </div>
-                    </div>
-                </div>
+                    </div>';
+                    }
+                    ?>
 
+                </div>
+                <script>
+
+
+                </script>
                 <div class="row">
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>รหัสผ่าน :</label>
                             <input type="password" name="password" id="password" class="form-control"
-                                   value="<?php echo $password; ?>">
+                                   value="<?php echo $password; ?>" maxlength="20" minlength="8" required
+                                   pattern="^[a-zA-Z0-9_.-]*$"
+                                   placeholder="รหัสผ่านต้องมีตัวอักษรตั้งแต่ 8-20 ตัวอักษร">
                         </div>
                     </div>
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>ยืนยันรหัสผ่าน :</label>
                             <input type="password" name="conPassword" id="conPassword" class="form-control"
-                                   value="<?php echo $password; ?>">
+                                   value="<?php echo $password; ?>" maxlength="20" minlength="8" required
+                                   pattern="^[a-zA-Z0-9_.-]*$" placeholder="รหัสผ่านและยืนยันรหัสผ่านต้องตรงกัน">
                         </div>
                     </div>
                 </div>
+
+
                 <hr>
 
 
@@ -274,13 +320,15 @@ include '__navbar_admin.php';
                         <div class="form-group">
                             <label>ชื่อ :</label>
                             <input name="firstName" id="firstName" class="form-control"
-                                   value="<?php echo $firstName; ?>">
+                                   value="<?php echo $firstName; ?>"
+                                   placeholder="ชื่อจริงของนิสิต" required>
                         </div>
                     </div>
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>นามสกุล :</label>
-                            <input name="lastName" id="lastName" class="form-control" value="<?php echo $lastname; ?>">
+                            <input name="lastName" id="lastName" class="form-control" value="<?php echo $lastname; ?>"
+                                   placeholder="นามสกุลนิสิต" required>
                         </div>
                     </div>
                 </div>
@@ -290,7 +338,7 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>วันเกิด :</label>
-                            <input name="birthdate" id="birthdate" value="<?php echo $birthdate; ?>">
+                            <input name="birthdate" id="birthdate" value="<?php echo $birthdate; ?>" required>
                         </div>
                     </div>
 
@@ -339,13 +387,13 @@ include '__navbar_admin.php';
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
-                                        <input type="radio" name="sex" id="sex" value="m">
+                                        <input type="radio" name="sex" id="sex" value="m" required>
                                     </div>
                                 </div>
                                 <output type="text" class="form-control"> ชาย</output>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
-                                        <input type="radio" name="sex" id="sex" value="f">
+                                        <input type="radio" name="sex" id="sex" value="f" required>
                                     </div>
                                 </div>
                                 <output type="text" class="form-control"> หญิง</output>
@@ -362,14 +410,21 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>รหัสบัตรประชาชน :</label>
-                            <input name="ID" id="ID" class="form-control" value="<?php echo $ID; ?>">
+                            <input name="ID" id="ID" class="form-control" value="<?php echo $ID; ?>" maxlength="13"
+                                   minlength="13" required
+                                   pattern="^([1|2|3|4|5|6]{1})([0-9]{12})$"
+                                   placeholder="รหัสประชาชนเป็นตัวเลข 13 หลัก">
                         </div>
                     </div>
 
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>เบอร์โทรศัพท์ :</label>
-                            <input type="tel" name="tel" id="tel" class="form-control" value="<?php echo $tel; ?>">
+                            <input type="tel" name="tel" id="tel" class="form-control" value="<?php echo $tel; ?>"
+                                   maxlength="10"
+                                   minlength="10" required
+                                   pattern="^([0]{1})([0-9]{9})$"
+                                   placeholder="เบอร์โทรศัพท์จำนวน 10 หลัก">
                         </div>
 
                     </div>
@@ -380,7 +435,7 @@ include '__navbar_admin.php';
                         <div class="form-group">
                             <label>ที่อยู่ :</label>
                             <textarea name="address" id="address"
-                                      class="form-control"><?php echo $address; ?></textarea>
+                                      class="form-control" required placeholder="กรุณากรอกที่อยู่ให้ครบถ้วน"><?php echo $address; ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -390,46 +445,67 @@ include '__navbar_admin.php';
                         <div class="form-group">
                             <label>ชื่อผู้ปกครอง :</label>
                             <input name="parent_name" id="parent_name" class="form-control"
-                                   value="<?php echo $parent_name; ?>">
+                                   value="<?php echo $parent_name; ?>" required placeholder="ชื่อผู้ปกครองของนิสิต">
                         </div>
                     </div>
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>เบอร์ผู้ปกครอง :</label>
                             <input name="parent_tel" id="parent_tel" class="form-control"
+                                   maxlength="10"
+                                   minlength="10" required
+                                   pattern="^([0]{1})([0-9]{9})$"
+                                   placeholder="เบอร์โทรศัพท์จำนวน 10 หลัก"
                                    value="<?php echo $parent_tel; ?>">
                         </div>
                     </div>
                 </div>
                 <hr>
+
+
                 <div class="row">
-                    <div class="col col-sm col-lg col-md">
-                        <div class="form-group">
+                    <?php
+                    if (isset($_GET['code'])) {
+                        echo "<div class='col col-sm col-lg col-md'>
+                        <div class='form-group'>
                             <label>รหัสนิสิต :</label>
-                            <input name="code" id="code" class="form-control" value="<?php echo $code; ?>">
+                            <input name='code' id='code' class='form-control' value='$code' disabled>
                         </div>
-                    </div>
+                    </div>";
+                    } else {
+                        echo "<div class='col col-sm col-lg col-md'>
+                        <div class='form-group'>
+                            <label>รหัสนิสิต :</label>
+                            <input name='code' id='code' class='form-control'
+                                   maxlength='10'
+                                   minlength='10' required
+                                   placeholder='รหัสนิสิต 10 ตัวอักษร'>
+                        </div>
+                    </div>";
+                    }
+
+                    ?>
+
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>หลักสูตร/คณะ :</label>
                             <input name="department" id="department" class="form-control"
-                                   value="<?php echo $department; ?>">
+                                   value="<?php echo $department; ?>" required placeholder="กรุณากรอกคณะของนิสิต">
                         </div>
                     </div>
-
                 </div>
 
                 <div class="row">
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>สาขา :</label>
-                            <input name="major" id="major" class="form-control" value="<?php echo $major; ?>">
+                            <input name="major" id="major" class="form-control" value="<?php echo $major; ?>" required placeholder="กรุณากรอกสาขาวิชาของนิสิต">
                         </div>
                     </div>
                     <div class="col-6 col-sm-6 col-lg-6 col-md-6">
                         <div class="form-group">
                             <label>ชั้นปีที่ :</label>
-                            <input name="level" id="level" class="form-control" value="<?php echo $level; ?>">
+                            <input name="level" id="level" class="form-control" value="<?php echo $level; ?>" required placeholder="กรุณากรอกชั้นปีการศึกษาของนิสิต">
                         </div>
                     </div>
                 </div>
@@ -438,7 +514,7 @@ include '__navbar_admin.php';
                         <div class="form-group">
                             <label>ชื่ออาจารย์ที่ปรึกษา :</label>
                             <input name="teacher_name" id="teacher_name" class="form-control"
-                                   value="<?php echo $teacher_name; ?>">
+                                   value="<?php echo $teacher_name; ?>" placeholder="กรุณาใส่ชื่ออาจารย์ที่ปรึกษา" required>
                         </div>
                     </div>
                 </div>
@@ -447,10 +523,10 @@ include '__navbar_admin.php';
                     <div class="col-2 col-sm-2 col-lg-2 col-md-2"></div>
 
                     <?php
-                    if(isset($_GET['code'])) {
+                    if (isset($_GET['code'])) {
                         echo "<button type='submit' name='updateNisit' class='btn btn-primary col-4 col-sm-4 col-lg-4 col-md-4'>
                         <i class='fa fa-plus'></i> แก้ไขข้อมูลนักเรียน</button>";
-                    }else{
+                    } else {
                         echo "<button type='submit' name='insertNisit' class='btn btn-primary col-4 col-sm-4 col-lg-4 col-md-4'>
                         <i class='fa fa-plus'></i> เพิ่มข้อมูลนิสิต</button>";
                     }
