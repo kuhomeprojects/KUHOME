@@ -159,7 +159,12 @@ include '__navbar_admin.php';
             <form method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12" align="center">
-                        <img id="showpicture" src="img/profile.png" width="200" border="5">
+                        <?php
+                        if ($picture == ''){
+                            echo '<img id="showpicture" src="img/profile.png" width="200" border="5">';
+                        }else
+                            echo '<img  width="200" border="5" src="data:image/jpeg;base64,'.base64_encode( $picture ).'" />';
+                        ?>
                         <hr>
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12">
@@ -168,7 +173,7 @@ include '__navbar_admin.php';
                                 <span class="input-group-btn">
                                       <span class="btn btn-sm btn-default btn-file btn-outline-info"><i
                                                   class="fa fa-image"></i> เลือกรูปภาพ
-                                           <input type="file" name="picture" id="picture"  value="<?php echo $picture; ?>"   >
+                                           <input type="file" name="picture" id="picture" value="<?php echo $picture; ?>" >
                                       </span>
                                 </span>
                             </div>
@@ -266,9 +271,7 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>ที่อยู่ :</label>
-                            <textarea name="address" id="address" class="form-control">
-                        <?php echo $address; ?>
-                            </textarea>
+                            <textarea name="address" id="address" class="form-control"><?php echo $address; ?></textarea>
                         </div>
                     </div>
                 </div>
