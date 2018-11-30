@@ -108,6 +108,21 @@
         border-left-color: salmon;
     }
 
+    .simple-form select:required {
+        margin: 0 .25rem;
+        min-width: 125px;
+        border: 1px solid #eee;
+        border-left: 5px solid;
+        border-radius: 5px;
+        transition: border-color .5s ease-out;
+    }
+    .simple-form select:required {
+        border-left-color: palegreen;
+    }
+    .simple-form select:invalid {
+        border-left-color: salmon;
+    }
+
     .simple-form input:optional {
 
         border-left-color: #999;

@@ -54,9 +54,8 @@ if (isset($_POST['username'])) {
         $_SESSION['tel'] = $row['tel'];
         $_SESSION['address'] = $row['address'];
         $_SESSION['position'] = $row['position'];
-        $_SESSION['picture'] = $row['picture'];
+        //$_SESSION['picture'] = $row['picture'];
     }
-
 
 }
 if (isset($_SESSION['username'])) {
