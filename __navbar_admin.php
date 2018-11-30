@@ -25,8 +25,10 @@
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     <?php
+                    if($_SESSION['type']=='N') echo '<img src="data:image/jpeg;base64,'.base64_encode( $_SESSION['picture'] ).'" width="25"/>';
                     echo $_SESSION['username'];
                     ?>
+
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" data-toggle="modal" onclick="initReportModal()" data-target="#reportModal"><i class="fa fa-exclamation-triangle"></i> แจ้งปัญหา</a>
