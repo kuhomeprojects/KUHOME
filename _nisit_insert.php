@@ -227,11 +227,11 @@ include '__checkSession.php';
             $("#picture").change(function () {
                 readURL(this, '#showpicture');
             });
+            $(document).ready(()=>{
+                $("#tel").mask("999-9999999");
+            });
         });
 
-        $(document).ready(()=>{
-            $("#tel").mask("099-9999999");
-        })
 
     </script>
 </head>
@@ -251,7 +251,7 @@ include '__navbar_admin.php';
             </div>
             <div class="card-body">
                 <div style="width: 60%" class="mx-auto">
-                    <form method="post" enctype="multipart/form-data" class="simple-form">
+                    <form method="post" enctype="multipart/form-data">
                         <div class="row">
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12" align="center">
                                 <?php
@@ -351,6 +351,8 @@ include '__navbar_admin.php';
                                     <input name="birthdate" id="birthdate" value="<?php echo $birthdate; ?>" required>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
 
                             <?php
                             if ($sex == 'm') {
@@ -362,13 +364,13 @@ include '__navbar_admin.php';
                                         <input checked type="radio" name="sex" id="sex" value="m">
                                     </div>
                                 </div>
-                                <output type="text" class="form-control"> ชาย</output>
+                                <output type="text" class="form-control" style="width: 111px; text-align: center"> ชาย</output>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <input type="radio" name="sex" id="sex" value="f">
                                     </div>
                                 </div>
-                                <output type="text" class="form-control"> หญิง</output>
+                                <output type="text" class="form-control" style="width: 111px; text-align: center"> หญิง</output>
                             </div>
                         </label>
                     </div>';
@@ -381,13 +383,13 @@ include '__navbar_admin.php';
                                         <input type="radio" name="sex" id="sex" value="m">
                                     </div>
                                 </div>
-                                <output type="text" class="form-control"> ชาย</output>
+                                <output type="text" class="form-control" style="width: 111px; text-align: center"> ชาย</output>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <input checked type="radio" name="sex" id="sex" value="f">
                                     </div>
                                 </div>
-                                <output type="text" class="form-control"> หญิง</output>
+                                <output type="text" class="form-control" style="width: 111px; text-align: center"> หญิง</output>
                             </div>
                         </label>
                     </div>';
@@ -400,20 +402,18 @@ include '__navbar_admin.php';
                                         <input type="radio" name="sex" id="sex" value="m" required>
                                     </div>
                                 </div>
-                                <output type="text" class="form-control"> ชาย</output>
+                                <output type="text" class="form-control" style="width: 111px; text-align: center"> ชาย</output>
                                 <div class="input-group-prepend">
                                     <div class="input-group-text">
                                         <input type="radio" name="sex" id="sex" value="f" required>
                                     </div>
                                 </div>
-                                <output type="text" class="form-control"> หญิง</output>
+                                <output type="text" class="form-control" style="width: 111px; text-align: center"> หญิง</output>
                             </div>
                         </label>
                     </div>';
                             }
                             ?>
-
-
                         </div>
 
                         <div class="row">
@@ -513,7 +513,7 @@ include '__navbar_admin.php';
                             <div class="col-6 col-sm-6 col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>ชั้นปีที่ :</label>
-                                    <input type="number" name="level" id="level" class="form-control" value="<?php echo $level; ?>" maxlength="1" minlength="1" required placeholder="กรุณากรอกชั้นปีการศึกษาของนิสิต">
+                                    <input type="number" name="level" id="level" class="form-control" value="<?php echo $level; ?>" required placeholder="กรุณากรอกชั้นปีการศึกษาของนิสิต">
                                 </div>
                             </div>
                         </div>
@@ -551,8 +551,14 @@ include '__navbar_admin.php';
                 </div>
 
             </div>
+            <div class="footer bg-warning text-white">
+
+            </div>
         </div>
     </div>
+
+
+    <!--    <div class="jumbotron jumbotron-fluid" style='background-image: url("img/Gear-BG-4.jpg"); '>-->
 
 </div>
 </body>
