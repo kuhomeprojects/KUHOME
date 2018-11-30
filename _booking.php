@@ -1,9 +1,25 @@
 <?php
 include '__connect.php';
 include '__checkSession.php';
-
+$msg = '';
 if(isset($_POST['insertBooking'])){
-
+    $startDate = $_POST['startDate'];
+    $endDate = $_POST['endDate'];
+    $year = $_POST['year'];
+    $semester = $_POST['semester'];
+    $towerNo = $_POST['towerNo'];
+    $towerType = $_POST['towerType'];
+    $sql = "INSERT INTO booking VALUES (STR_TO_DATE('$startDate','%d/%c/%Y'),STR_TO_DATE('$endDate','%d/%c/%Y'), $towerNo, $year, '$towerNo')";
+    $result = mysqli_query($conn,$sql);
+    print_r($result);
+    if($result){
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>เปิดการจองสำเร็จสำเร็จ!</strong> 
+                    </div>';
+    }
 }
 ?>
 <!Document>
@@ -18,10 +34,10 @@ if(isset($_POST['insertBooking'])){
 
             $.get('SQL_Select/selectTowerList.php',r=>{
                 towerList = JSON.parse(r);
-
                 setTowerList();
                 console.log(towerList);
             });
+
             let year = new Date().getFullYear() + 543;
             let yearList = '';
             for (let i = 0; i < 5; i++) {
@@ -93,8 +109,11 @@ if(isset($_POST['insertBooking'])){
 <?php
 include '__navbar_admin.php';
 ?>
-
 <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+
+    <?php
+    echo $msg;
+    ?>
     <div class="card">
         <div class="card-header">
             <nav aria-label="breadcrumb  bg-dark">
@@ -131,7 +150,7 @@ include '__navbar_admin.php';
     </div>
 </div>
 
-<form class="simple-form">
+<form class="simple-form" method="post">
     <div class="container-fluid" style="margin-top: 10px; margin-bottom: 150px;">
         <div class="card">
             <div class="card-header">

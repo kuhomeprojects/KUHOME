@@ -227,7 +227,7 @@ include '__checkSession.php';
             $("#picture").change(function () {
                 readURL(this, '#showpicture');
             });
-            $(document).ready(()=>{
+            $(document).ready(() => {
                 $("#tel").mask("999-9999999");
             });
         });
@@ -275,9 +275,7 @@ include '__navbar_admin.php';
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
-
                             <?php
                             if (isset($_GET['code'])) {
                                 echo "<div class='col col-sm col-lg col-md'>
@@ -316,7 +314,8 @@ include '__navbar_admin.php';
                                     <label>ยืนยันรหัสผ่าน :</label>
                                     <input type="password" name="conPassword" id="conPassword" class="form-control"
                                            value="<?php echo $password; ?>" maxlength="20" minlength="8" required
-                                           pattern="^[a-zA-Z0-9_.-]*$" placeholder="รหัสผ่านและยืนยันรหัสผ่านต้องตรงกัน">
+                                           pattern="^[a-zA-Z0-9_.-]*$"
+                                           placeholder="รหัสผ่านและยืนยันรหัสผ่านต้องตรงกัน">
                                 </div>
                             </div>
                         </div>
@@ -337,7 +336,8 @@ include '__navbar_admin.php';
                             <div class="col col-sm col-lg col-md">
                                 <div class="form-group">
                                     <label>นามสกุล :</label>
-                                    <input name="lastName" id="lastName" class="form-control" value="<?php echo $lastname; ?>"
+                                    <input name="lastName" id="lastName" class="form-control"
+                                           value="<?php echo $lastname; ?>"
                                            placeholder="นามสกุลนิสิต" required>
                                 </div>
                             </div>
@@ -420,7 +420,8 @@ include '__navbar_admin.php';
                             <div class="col col-sm col-lg col-md">
                                 <div class="form-group">
                                     <label>รหัสบัตรประชาชน :</label>
-                                    <input name="ID" id="ID" class="form-control" value="<?php echo $ID; ?>" maxlength="13"
+                                    <input name="ID" id="ID" class="form-control" value="<?php echo $ID; ?>"
+                                           maxlength="13"
                                            minlength="13" required
                                            pattern="^([1|2|3|4|5|6]{1})([0-9]{12})$"
                                            placeholder="รหัสประชาชนเป็นตัวเลข 13 หลัก">
@@ -430,7 +431,8 @@ include '__navbar_admin.php';
                             <div class="col col-sm col-lg col-md">
                                 <div class="form-group">
                                     <label>เบอร์โทรศัพท์ :</label>
-                                    <input type="tel" name="tel" id="tel" class="form-control" value="<?php echo $tel; ?>"
+                                    <input type="tel" name="tel" id="tel" class="form-control"
+                                           value="<?php echo $tel; ?>"
                                            maxlength="11"
                                            minlength="11" required
                                            placeholder="เบอร์โทรศัพท์ ตัวอย่าง(089-1231231)">
@@ -444,7 +446,8 @@ include '__navbar_admin.php';
                                 <div class="form-group">
                                     <label>ที่อยู่ :</label>
                                     <textarea name="address" id="address"
-                                              class="form-control" required placeholder="กรุณากรอกที่อยู่ให้ครบถ้วน"><?php echo $address; ?></textarea>
+                                              class="form-control" required
+                                              placeholder="กรุณากรอกที่อยู่ให้ครบถ้วน"><?php echo $address; ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -454,7 +457,8 @@ include '__navbar_admin.php';
                                 <div class="form-group">
                                     <label>ชื่อผู้ปกครอง :</label>
                                     <input name="parent_name" id="parent_name" class="form-control"
-                                           value="<?php echo $parent_name; ?>" required placeholder="ชื่อผู้ปกครองของนิสิต">
+                                           value="<?php echo $parent_name; ?>" required
+                                           placeholder="ชื่อผู้ปกครองของนิสิต">
                                 </div>
                             </div>
                             <div class="col col-sm col-lg col-md">
@@ -498,7 +502,8 @@ include '__navbar_admin.php';
                                 <div class="form-group">
                                     <label>หลักสูตร/คณะ :</label>
                                     <input name="department" id="department" class="form-control"
-                                           value="<?php echo $department; ?>" required placeholder="กรุณากรอกคณะของนิสิต">
+                                           value="<?php echo $department; ?>" required
+                                           placeholder="กรุณากรอกคณะของนิสิต">
                                 </div>
                             </div>
                         </div>
@@ -507,13 +512,16 @@ include '__navbar_admin.php';
                             <div class="col col-sm col-lg col-md">
                                 <div class="form-group">
                                     <label>สาขา :</label>
-                                    <input name="major" id="major" class="form-control" value="<?php echo $major; ?>" required placeholder="กรุณากรอกสาขาวิชาของนิสิต">
+                                    <input name="major" id="major" class="form-control" value="<?php echo $major; ?>"
+                                           required placeholder="กรุณากรอกสาขาวิชาของนิสิต">
                                 </div>
                             </div>
                             <div class="col-6 col-sm-6 col-lg-6 col-md-6">
                                 <div class="form-group">
                                     <label>ชั้นปีที่ :</label>
-                                    <input type="number" name="level" id="level" class="form-control" value="<?php echo $level; ?>" required placeholder="กรุณากรอกชั้นปีการศึกษาของนิสิต">
+                                    <input type="number" name="level" id="level" class="form-control"
+                                           value="<?php echo $level; ?>" required
+                                           placeholder="กรุณากรอกชั้นปีการศึกษาของนิสิต">
                                 </div>
                             </div>
                         </div>
@@ -522,7 +530,8 @@ include '__navbar_admin.php';
                                 <div class="form-group">
                                     <label>ชื่ออาจารย์ที่ปรึกษา :</label>
                                     <input name="teacher_name" id="teacher_name" class="form-control"
-                                           value="<?php echo $teacher_name; ?>" placeholder="กรุณาใส่ชื่ออาจารย์ที่ปรึกษา" required>
+                                           value="<?php echo $teacher_name; ?>"
+                                           placeholder="กรุณาใส่ชื่ออาจารย์ที่ปรึกษา" required>
                                 </div>
                             </div>
                         </div>
@@ -541,12 +550,12 @@ include '__navbar_admin.php';
                             ?>
                             <span style="margin: 10px"></span>
                             <button onclick="window.history.go(-1);" type="button"
-                                    class="btn btn-danger col-4 col-sm-4 col-lg-4 col-md-4 "><i class="fa fa-times"></i> ยกเลิก
+                                    class="btn btn-danger col-4 col-sm-4 col-lg-4 col-md-4 "><i class="fa fa-times"></i>
+                                ยกเลิก
                             </button>
                             <div class="col-2 col-sm-2 col-lg-2 col-md-2"></div>
 
                         </div>
-
                     </form>
                 </div>
 
