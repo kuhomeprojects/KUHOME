@@ -10,6 +10,8 @@ include '__checkSession.php';
 
     $code = "";
     $name = "";
+    $firstName = "";
+    $lastname = "";
     $level = "";
     $major = "";
     $sex = "";
@@ -25,7 +27,7 @@ include '__checkSession.php';
     $parent_tel = "";
     $department = "";
 
-    if(isset($_GET['code'])){
+    if (isset($_GET['code'])) {
         $code = $_GET['code'];
         //select data
         $sql = "SELECT * FROM `student` WHERE `code` = '$code'";
@@ -35,7 +37,7 @@ include '__checkSession.php';
         if ($row) {
             $code = $row['code'];
             $name = $row['name'];
-            list($firstName,$lastname) = explode(" ", $name);
+            list($firstName, $lastname) = explode(" ", $name);
             $level = $row['level'];
             $major = $row['major'];
             $sex = $row['sex'];
@@ -59,7 +61,7 @@ include '__checkSession.php';
 
         $firstName = trim($_POST['firstName']);
         $lastname = trim($_POST['lastName']);
-        $name = $firstName." ".$lastname;
+        $name = $firstName . " " . $lastname;
 
         $level = $_POST['level'];
         $major = $_POST['major'];
@@ -89,12 +91,67 @@ include '__checkSession.php';
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                         </button>
-                        <strong>สำเร็จ!</strong> แก้ไขข้อมูลลูกค้าแล้ว
+                        <strong>สำเร็จ!</strong> เพิ่มข้อมูลนิสิตแล้ว
                     </div>';
         } else {
 
         }
+    } else if (isset($_POST['updateNisit'])) {
+
+        $firstName = trim($_POST['firstName']);
+        $lastname = trim($_POST['lastName']);
+        $name = $firstName . " " . $lastname;
+
+        $level = $_POST['level'];
+        $major = $_POST['major'];
+        $sex = $_POST['sex'];
+        $birthdate = $_POST['birthdate'];
+        $ID = $_POST['ID'];
+        $address = $_POST['address'];
+        $tel = $_POST['tel'];
+        $parent_name = $_POST['parent_name'];
+        $teacher_name = $_POST['teacher_name'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $parent_tel = $_POST['parent_tel'];
+        $department = $_POST['department'];
+
+        $sql = "UPDATE student SET
+                    name = '$name',
+                    level = '$level',
+                    major = '$major',
+                    sex = '$sex',
+                    birthdate = '$birthdate',
+                    ID = '$ID',
+                    address = '$address',
+                    tel = '$tel',
+                    parent_name = '$parent_name',
+                    teacher_name = '$teacher_name',
+                    password = '$password',
+                    parent_tel = '$parent_name',
+                    department = '$department'";
+
+
+        if ($_FILES['picture']['error'] == 0) {
+            $file = $_FILES['picture']['tmp_name'];
+            $picture = addslashes(file_get_contents($file));
+            $sql .= ", picture='$picture' ";
+        }
+
+        $sql .= "WHERE student.code = '$code';";
+        $query = mysqli_query($conn, $sql);
+        if ($query) {
+            echo '<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>สำเร็จ!</strong> แก้ไขข้อมูลนิสิตแล้ว
+                    </div>';
+
+        }
     }
+
+
     ?>
 
     <script>
@@ -121,6 +178,7 @@ include '__checkSession.php';
                     // if (log) alert(log);
                 }
             });
+
             function readURL(input, id) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
@@ -133,11 +191,13 @@ include '__checkSession.php';
                     });
                 }
             }
+
             function readFile(file, callback) {
                 var reader = new FileReader();
                 reader.onload = callback
                 reader.readAsText(file);
             }
+
             $("#picture").change(function () {
                 readURL(this, '#showpicture');
             });
@@ -160,10 +220,10 @@ include '__navbar_admin.php';
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12" align="center">
                         <?php
-                        if ($picture == ''){
+                        if ($picture == '') {
                             echo '<img id="showpicture" src="img/profile.png" width="200" border="5">';
-                        }else
-                            echo '<img  width="200" border="5" src="data:image/jpeg;base64,'.base64_encode( $picture ).'" />';
+                        } else
+                            echo '<img id="showpicture" width="200" border="5" src="data:image/jpeg;base64,' . base64_encode($picture) . '" />';
                         ?>
                         <hr>
                     </div>
@@ -173,7 +233,7 @@ include '__navbar_admin.php';
                                 <span class="input-group-btn">
                                       <span class="btn btn-sm btn-default btn-file btn-outline-info"><i
                                                   class="fa fa-image"></i> เลือกรูปภาพ
-                                           <input type="file" name="picture" id="picture" value="<?php echo $picture; ?>" >
+                                           <input type="file" name="picture" id="picture">
                                       </span>
                                 </span>
                             </div>
@@ -194,13 +254,15 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>รหัสผ่าน :</label>
-                            <input type="password" name="password" id="password" class="form-control" value="<?php echo $password; ?>">
+                            <input type="password" name="password" id="password" class="form-control"
+                                   value="<?php echo $password; ?>">
                         </div>
                     </div>
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>ยืนยันรหัสผ่าน :</label>
-                            <input type="password" name="conPassword" id="conPassword" class="form-control" value="<?php echo $password; ?>">
+                            <input type="password" name="conPassword" id="conPassword" class="form-control"
+                                   value="<?php echo $password; ?>">
                         </div>
                     </div>
                 </div>
@@ -211,7 +273,8 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>ชื่อ :</label>
-                            <input name="firstName" id="firstName" class="form-control" value="<?php echo $firstName; ?>">
+                            <input name="firstName" id="firstName" class="form-control"
+                                   value="<?php echo $firstName; ?>">
                         </div>
                     </div>
                     <div class="col col-sm col-lg col-md">
@@ -227,10 +290,51 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>วันเกิด :</label>
-                            <input  name="birthdate" id="birthdate" value="<?php echo $birthdate; ?>">
+                            <input name="birthdate" id="birthdate" value="<?php echo $birthdate; ?>">
                         </div>
                     </div>
-                    <div class="col col-sm col-lg col-md">
+
+                    <?php
+                    if ($sex == 'm') {
+                        echo '<div class="col col-sm col-lg col-md">
+                        <label>เพศ :
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input checked type="radio" name="sex" id="sex" value="m">
+                                    </div>
+                                </div>
+                                <output type="text" class="form-control"> ชาย</output>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input type="radio" name="sex" id="sex" value="f">
+                                    </div>
+                                </div>
+                                <output type="text" class="form-control"> หญิง</output>
+                            </div>
+                        </label>
+                    </div>';
+                    } else if ($sex == 'f') {
+                        echo '<div class="col col-sm col-lg col-md">
+                        <label>เพศ :
+                            <div class="input-group form-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input type="radio" name="sex" id="sex" value="m">
+                                    </div>
+                                </div>
+                                <output type="text" class="form-control"> ชาย</output>
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <input checked type="radio" name="sex" id="sex" value="f">
+                                    </div>
+                                </div>
+                                <output type="text" class="form-control"> หญิง</output>
+                            </div>
+                        </label>
+                    </div>';
+                    } else {
+                        echo '<div class="col col-sm col-lg col-md">
                         <label>เพศ :
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
@@ -247,7 +351,11 @@ include '__navbar_admin.php';
                                 <output type="text" class="form-control"> หญิง</output>
                             </div>
                         </label>
-                    </div>
+                    </div>';
+                    }
+                    ?>
+
+
                 </div>
 
                 <div class="row">
@@ -271,7 +379,8 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>ที่อยู่ :</label>
-                            <textarea name="address" id="address" class="form-control"><?php echo $address; ?></textarea>
+                            <textarea name="address" id="address"
+                                      class="form-control"><?php echo $address; ?></textarea>
                         </div>
                     </div>
                 </div>
@@ -280,13 +389,15 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>ชื่อผู้ปกครอง :</label>
-                            <input name="parent_name" id="parent_name" class="form-control" value="<?php echo $parent_name; ?>">
+                            <input name="parent_name" id="parent_name" class="form-control"
+                                   value="<?php echo $parent_name; ?>">
                         </div>
                     </div>
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>เบอร์ผู้ปกครอง :</label>
-                            <input name="parent_tel" id="parent_tel" class="form-control" value="<?php echo $parent_tel; ?>">
+                            <input name="parent_tel" id="parent_tel" class="form-control"
+                                   value="<?php echo $parent_tel; ?>">
                         </div>
                     </div>
                 </div>
@@ -301,7 +412,8 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>หลักสูตร/คณะ :</label>
-                            <input name="department" id="department" class="form-control" value="<?php echo $department; ?>">
+                            <input name="department" id="department" class="form-control"
+                                   value="<?php echo $department; ?>">
                         </div>
                     </div>
 
@@ -325,16 +437,27 @@ include '__navbar_admin.php';
                     <div class="col col-sm col-lg col-md">
                         <div class="form-group">
                             <label>ชื่ออาจารย์ที่ปรึกษา :</label>
-                            <input name="teacher_name" id="teacher_name" class="form-control" value="<?php echo $teacher_name; ?>">
+                            <input name="teacher_name" id="teacher_name" class="form-control"
+                                   value="<?php echo $teacher_name; ?>">
                         </div>
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <div class="col-2 col-sm-2 col-lg-2 col-md-2"></div>
-                    <button type="submit" name="insertNisit" class="btn btn-primary col-4 col-sm-4 col-lg-4 col-md-4 "><i class="fa fa-plus"></i> เพิ่มข้อมูลนิสิต
-                    </button><span style="margin: 10px"></span>
-                    <button onclick="window.history.go(-1);" type="button" class="btn btn-danger col-4 col-sm-4 col-lg-4 col-md-4 " ><i class="fa fa-times"></i> ยกเลิก
+
+                    <?php
+                    if(isset($_GET['code'])) {
+                        echo "<button type='submit' name='updateNisit' class='btn btn-primary col-4 col-sm-4 col-lg-4 col-md-4'>
+                        <i class='fa fa-plus'></i> แก้ไขข้อมูลนักเรียน</button>";
+                    }else{
+                        echo "<button type='submit' name='insertNisit' class='btn btn-primary col-4 col-sm-4 col-lg-4 col-md-4'>
+                        <i class='fa fa-plus'></i> เพิ่มข้อมูลนิสิต</button>";
+                    }
+                    ?>
+                    <span style="margin: 10px"></span>
+                    <button onclick="window.history.go(-1);" type="button"
+                            class="btn btn-danger col-4 col-sm-4 col-lg-4 col-md-4 "><i class="fa fa-times"></i> ยกเลิก
                     </button>
                     <div class="col-2 col-sm-2 col-lg-2 col-md-2"></div>
 
