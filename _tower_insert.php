@@ -38,12 +38,15 @@ if (isset($_POST['insertTower'])) {
     $sql = "INSERT INTO `tower` (`tower_no`, `type`, `tel`, `status`, `cost`, `tower_name`) VALUES ('$tower_no', '$type', '$tel', '$status', '$cost', '$tower_name');";
     $query = mysqli_query($conn, $sql);
     if ($query) {
+        $_GET['type'] = $type;
+        $_GET['tower_no'] = $tower_no;
         echo '<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                         </button>
                         <strong>สำเร็จ!</strong> เพิ่มข้อมูลตึกแล้ว
                     </div>';
+
     } else {
         echo '<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
