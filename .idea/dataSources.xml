@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="kuhome" uuid="65722f92-f6a2-46ef-a53c-be4b1da8a64c">
+    <data-source source="LOCAL" name="kuhome" uuid="f27fd755-8030-449e-8943-5711b28c8ec1">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
