@@ -2,7 +2,7 @@
 include '__connect.php';
 include '__checkSession.php';
 $msg = '';
-if(isset($_POST['insertBooking'])){
+if (isset($_POST['insertBooking'])) {
     $startDate = $_POST['startDate'];
     $endDate = $_POST['endDate'];
     $year = $_POST['year'];
@@ -10,9 +10,9 @@ if(isset($_POST['insertBooking'])){
     $towerNo = $_POST['towerNo'];
     $towerType = $_POST['towerType'];
     $sql = "INSERT INTO booking VALUES (STR_TO_DATE('$startDate','%d/%c/%Y'),STR_TO_DATE('$endDate','%d/%c/%Y'), $towerNo, $year, '$towerNo')";
-    $result = mysqli_query($conn,$sql);
+    $result = mysqli_query($conn, $sql);
     print_r($result);
-    if($result){
+    if ($result) {
         echo '<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -28,11 +28,11 @@ if(isset($_POST['insertBooking'])){
 <head>
     <?php include '__header.php'; ?>
     <script>
-        let towerList =[];
+        let towerList = [];
 
         $(document).ready(() => {
-
-            $.get('SQL_Select/selectTowerList.php',r=>{
+            $("#bookingTable").dataTable();
+            $.get('SQL_Select/selectTowerList.php', r => {
                 towerList = JSON.parse(r);
                 setTowerList();
                 console.log(towerList);
@@ -42,7 +42,7 @@ if(isset($_POST['insertBooking'])){
             let yearList = '';
             for (let i = 0; i < 5; i++) {
                 let y = Number(Number(year) + i);
-                yearList += "<option value='"+y+"'>" + y + "</option>"
+                yearList += "<option value='" + y + "'>" + y + "</option>"
             }
             $("#year").html(yearList);
             $('#startDate').datepicker({
@@ -55,32 +55,35 @@ if(isset($_POST['insertBooking'])){
             });
             validateButton()
         });
-        function setTowerList(){
+
+        function setTowerList() {
             let type = $('#towerType').val();
-            let list = towerList.filter(f=>f.type==type);
+            let list = towerList.filter(f => f.type == type);
             let html = '';
-            for(let tower of list){
-                html += '<option value="'+tower.tower_no+'">'+tower.tower_no+'</option>'
+            for (let tower of list) {
+                html += '<option value="' + tower.tower_no + '">' + tower.tower_no + '</option>'
             }
             $('#towerNo').html(html);
         }
-        let openBookingInfo={
-            startDate:"",
-            endDate:"",
-            year:"",
-            towerType:"",
-            towerNo:""
+
+        let openBookingInfo = {
+            startDate: "",
+            endDate: "",
+            year: "",
+            towerType: "",
+            towerNo: ""
         }
-        function validateButton(){
+
+        function validateButton() {
             let valid = true;
-            for(let key in openBookingInfo){
-                openBookingInfo[key] = $('#'+key).val();
-                if(openBookingInfo[key]==''){
+            for (let key in openBookingInfo) {
+                openBookingInfo[key] = $('#' + key).val();
+                if (openBookingInfo[key] == '') {
                     valid = false;
                 }
             }
-            if(!valid) $("#submitBtn").attr('disabled','disabled');
-            else  $("#submitBtn").removeAttr('disabled');
+            if (!valid) $("#submitBtn").attr('disabled', 'disabled');
+            else $("#submitBtn").removeAttr('disabled');
 
 
         }
@@ -109,8 +112,8 @@ if(isset($_POST['insertBooking'])){
 <?php
 include '__navbar_admin.php';
 ?>
-<div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
 
+<div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
     <?php
     echo $msg;
     ?>
@@ -121,24 +124,23 @@ include '__navbar_admin.php';
             </nav>
         </div>
         <div class="card-body">
-
             <div class="row" align="center">
                 <div class=" col-3 col-sm col-md col-lg">
-                    <div class="img-area">
-                        <a href="_information_create.php"> <img src="img/menu/booking.png" class="image"
-                                                                width="125" height="125">
-                            <div class="overlay bg-info ">
-                                <div class="text"> เพิ่มช่วงจองหอ</div>
+                    <div class="img-area ">
+                        <a href="_booking.php?bookingList="> <img src="img/menu/booked.png" class=" image"
+                                                                  width="125" height="125">
+                            <div class="overlay bg-secondary ">
+                                <div class="text"> หอพักที่เปิดจอง</div>
                             </div>
                         </a>
                     </div>
                 </div>
                 <div class=" col-3 col-sm col-md col-lg">
-                    <div class="img-area ">
-                        <a data-toggle="modal" data-target="#reportModal"> <img src="img/menu/booked.png" class=" image"
-                                                                                width="125" height="125">
-                            <div class="overlay bg-secondary ">
-                                <div class="text"> ดูรายการจอง</div>
+                    <div class="img-area">
+                        <a href="_booking.php?bookingCreate="> <img src="img/menu/booking.png" class="image"
+                                                                width="125" height="125">
+                            <div class="overlay bg-info ">
+                                <div class="text"> เพิ่มช่วงจองหอ</div>
                             </div>
                         </a>
                     </div>
@@ -150,81 +152,11 @@ include '__navbar_admin.php';
     </div>
 </div>
 
-<form class="simple-form" method="post">
-    <div class="container-fluid" style="margin-top: 10px; margin-bottom: 150px;">
-        <div class="card">
-            <div class="card-header">
-                <nav aria-label="breadcrumb  bg-dark">
-                    <h5><i class="fa fa-star"></i> จัดการการจอง</h5>
-                </nav>
-            </div>
-            <div class="card-body">
-                <div class="container">
-                    <div class="row">
+<?php
+if(isset($_GET['bookingList'])) include '_booking_list.php';
+if(isset($_GET['bookingCreate'])) include '_booking_create.php';
+?>
 
-                        <div class="col col-sm col-md col-lg">
-                            <div class="form-group">
-                                <label class="font-weight-bold">วันที่เริ่มจอง</label>
-                                <input id="startDate" class="form-control" name="startDate" required readonly>
 
-                            </div>
-                        </div>
-                        <div class="col col-sm col-md col-lg">
-                            <div class="form-group">
-                                <label class="font-weight-bold">วันที่สิ้นสุดการจอง</label>
-                                <input id="endDate" class="form-control" name="endDate" onchange="validateDateBooking()"
-                                       required readonly>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-
-                        <div class="col col-sm col-md col-lg">
-                            <div class="form-group">
-                                <label class="font-weight-bold">ปีการศึกษา</label>
-                                <select class="form-control" id="year" name="year" required>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col col-sm col-md col-lg">
-                            <div class="form-group">
-                                <label class="font-weight-bold">เทอม</label>
-                                <select class="form-control" id="semester" name="semester" required>
-                                    <option value="1">ภาคต้น</option>
-                                    <option value="2">ภาคปลาย</option>
-                                    <option value="3">ฤดูร้อน</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="font-weight-bold">ประเภทหอพัก</label>
-                                <select class="form-control" id="towerType" name="towerType" onchange="setTowerList()" required>
-                                    <option value="M"> หอชาย</option>
-                                    <option value="F"> หอหญิง</option>
-                                </select>
-                            </div>
-                        </div><div class="col-6 col-sm-6 col-md-6 col-lg-6">
-                            <div class="form-group">
-                                <label class="font-weight-bold">หอที่เปิด</label>
-                                <select class="form-control" id="towerNo" name="towerNo" onchange=" validateButton()" required>
-
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer" align="center">
-                <button class="btn btn-sm btn-outline-success" id="submitBtn" name="insertBooking" style="margin: 10px"><i class="fa fa-check"></i> เปิดการจอง</button>
-            </div>
-        </div>
-    </div>
-    </div>
-</form>
 </body>
 </html>
