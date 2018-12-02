@@ -1,57 +1,5 @@
 
 
-<!--<div class="container-fluid" style="margin-top: 10px; margin-bottom: 150px;">
-    <div class="card">
-        <div class="card-header">
-            <nav aria-label="breadcrumb  bg-dark">
-                <h5><i class="fa fa-star"></i> จัดการการจอง</h5>
-            </nav>
-        </div>
-        <div class="card-body">
-            <div class="container">
-                <table class="table table-bordered rounded" id="bookingTable">
-                    <thead class="bg-warning">
-                    <tr>
-                        <th>ลำดับ</th>
-                        <th>หอพัก</th>
-                        <th>หมายเลข</th>
-                        <th>เวลาเปิดจอง</th>
-                        <th>เวลาปิดจอง</th>
-                        <th>ปีการศึกษา</th>
-                        <th>เทอม</th>
-                        <th>จัดการ</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-/*                    $count = 0;
-                    $sql = "SELECT b.*,s.full_semester,t.full_status FROM BOOKING b INNER join semeter_detail s ON b.semester = s.semester INNER join status t on t.status = b.tower_type";
-                    $result = mysqli_query($conn, $sql);
-                    while ($temp = mysqli_fetch_array($result)) {
-                        $count++;
-                        */?>
-                        <tr>
-                            <td><?php /*echo $count */?></td>
-                            <td><?php /*echo $temp['full_status'] */?></td>
-                            <td><?php /*echo $temp['tower_no'] */?></td>
-                            <td><?php /*echo $temp['start_date'] */?></td>
-                            <td><?php /*echo $temp['end_date'] */?></td>
-                            <td><?php /*echo $temp['full_semester'] */?></td>
-                            <td><?php /*echo $temp['year'] */?></td>
-                            <td>
-                                <button class="btn btn-sm btn-outline-info"><i class="fa fa-edit"></i> แก้ไข</button>
-                                <button class="btn btn-sm btn-outline-warning"><i class="fa fa-trash"></i> ลบ</button>
-                            </td>
-                        </tr>
-                    <?php /*} */?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>-->
-
-
 <form class="simple-form" action="_booking.php" method="post">
     <div class="container-fluid" style="margin-top: 10px; margin-bottom: 150px;">
         <div class="card">

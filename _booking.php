@@ -9,7 +9,7 @@ if (isset($_POST['insertBooking'])) {
     $semester = $_POST['semester'];
     $towerNo = $_POST['towerNo'];
     $towerType = $_POST['towerType'];
-    $sql = "INSERT INTO booking VALUES (STR_TO_DATE('$startDate','%d/%c/%Y'),STR_TO_DATE('$endDate','%d/%c/%Y'), $towerNo, $year, '$towerNo')";
+    $sql = "INSERT INTO booking VALUES (STR_TO_DATE('$startDate','%d/%c/%Y'),STR_TO_DATE('$endDate','%d/%c/%Y'), $towerNo, $year, '$towerNo','$towerType')";
     $result = mysqli_query($conn, $sql);
     print_r($result);
     if ($result) {

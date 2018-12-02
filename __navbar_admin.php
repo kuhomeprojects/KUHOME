@@ -16,7 +16,12 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="_booking.php">จองหอ</a>
+                <a class="nav-link" href="_booking.php">เปิดการจอง</a>
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link" href="_reserve.php">ค้นหาการจอง</a>
             </li>
 
             <li class="nav-item">
@@ -36,12 +41,24 @@
                     if($_SESSION['type']=='N') echo '<img src="data:image/jpeg;base64,'.base64_encode( $_SESSION['picture'] ).'" width="25"/>';
                     echo $_SESSION['username'];
                     ?>
-
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <a class="dropdown-item" data-toggle="modal" onclick="initReportModal()" data-target="#reportModal"><i class="fa fa-exclamation-triangle"></i> แจ้งปัญหา</a>
-                    <a class="dropdown-item" data-toggle="modal"  data-target="#profileModal">
-                        <i class="fa fa-user-circle-o"></i> Profile</a>
+
+                 <?php
+                 if($_SESSION['type']=='Y'){
+                  ?>
+                     <a class="dropdown-item" onclick="initProfileModal()" data-toggle="modal"  data-target="#profileModal">
+                         <i class="fa fa-user-circle-o"></i> Profile</a>
+                    <?php
+                 }else{
+                     ?>
+                     <a class="dropdown-item" href="_nisit_insert.php?code=<?php echo $_SESSION['code'];?>">
+                         <i class="fa fa-user-circle-o"></i> Profile</a>
+                     <?php
+                 }
+                 ?>
+
                 </div>
             </li>
 
@@ -64,5 +81,7 @@
 
 
 <?php include '__report_modal.php'; ?>
-<?php include '__profile_modal.php'; ?>
+
+<?php if($_SESSION['type']) include '__profile_modal.php'; ?>
+
 

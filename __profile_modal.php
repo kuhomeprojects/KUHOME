@@ -14,9 +14,12 @@
     }
 
     function initProfileModal() {
+        validDatePassword()
+        updateProfileDetail.isPasswordChange = false;
         $("#saveProfile").hide();
         $("#passwordField").hide();
         $("#saveButton").attr('disabled', 'disabled');
+        $("#passwordChangeStatus").html('<span class="text-warning"><i class="fa fa-exclamation-triangle"></i> กรุณาระบุรหัสผ่านก่อนแก้ไขข้อมูล</span>');
     }
 
     function saveProfile(){
@@ -32,7 +35,10 @@
         updateProfileDetail.address = $("#updateAddress").val();
         updateProfileDetail.newPassword = $("#updatePassword").val();
         $.post('SQL_Update/updateProfile.php',updateProfileDetail,r=>{
-
+                if(r){
+                    alert('แก้ไขข้อมูลเรียบร้อยแล้ว');
+                    location.reload()
+                }
         });
     }
 
@@ -79,6 +85,7 @@
             password: $("#currentPassword").val()
         }
         $.post('SQL_Select/checkPassword.php', detail, r => {
+            console.log(r);
             updateProfileDetail.isValidPassword = (r == 'true');
             if (updateProfileDetail.isValidPassword) {
                 html = '<span class="text-success"><i class="fa fa-check"></i> รหัสผ่านถูกต้อง</span>'
@@ -102,6 +109,7 @@
         }
     }
 </script>
+
 <div class="modal fade " id="profileModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -136,7 +144,7 @@
                             <div class="form-group">
                                 <label>ตำแหน่ง</label>
                                 <input name="updateType" id="updateType" class="form-control"
-                                       value="<?php echo ''; ?>" disabled>
+                                       value="<?php echo $_SESSION['full_position']; ?>" disabled>
                             </div>
                         </div>
                         <div class="col col-sm col-lg col-md">
@@ -144,18 +152,11 @@
                                 <label>เบอร์โทรศัพท์</label>
                                 <input name="updateTel"
                                        maxlength="20" id="updateTel" class="form-control"
-                                       value="<?php echo ''; ?>">
+                                       value="<?php echo $_SESSION['tel']; ?>">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col col-sm col-lg col-md">
-                            <div class="form-group">
-                                <label>สถานะการใช้าน</label>
-                                <input name="updateStatus" id="updateStatus" class="form-control"
-                                       value="<?php echo ''; ?>" disabled>
-                            </div>
-                        </div>
                         <div class="col col-sm col-lg col-md">
                         </div>
                     </div>
@@ -166,7 +167,7 @@
                                 <textarea name="updateAddress"
                                           id="updateAddress"
                                           class="form-control"
-                                          value="<?php echo ''; ?>"></textarea>
+                                          ><?php echo $_SESSION['address']; ?></textarea>
                             </div>
                         </div>
                     </div>

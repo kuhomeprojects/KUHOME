@@ -1,5 +1,5 @@
 <?php
-include '../connect.php';
+include '../__connect.php';
 $username = $_POST['username'];
 $password = $_POST['password'];
 $isAdmin = $_SESSION['type'];

@@ -20,12 +20,13 @@ if (isset($_POST['username'])) {
     $isAdmmin = $_POST['isAdmin'];
     $sql = '';
     if ($isAdmmin == 'Y') {
-        $sql = "SELECT * FROM USER WHERE username='$username' AND password='$password'";
+        $sql = "SELECT u.*,t.full_position FROM USER u  inner join usertype t on t.position = u.position WHERE username='$username' AND password='$password'";
         $_SESSION['table'] = 'user';
     } elseif ($isAdmmin == 'N') {
         $sql = "SELECT * FROM student WHERE username='$username' AND password='$password'";
         $_SESSION['table'] = 'student';
     }
+
     $result = mysqli_query($conn, $sql);
     $row = mysqli_fetch_assoc($result);
 
@@ -43,17 +44,19 @@ if (isset($_POST['username'])) {
         $_SESSION['parent_name'] = $row['parent_name'];
         $_SESSION['picture'] = $row['picture'];
         $_SESSION['ID'] = $row['ID'];
+        $_SESSION['code'] = $row['code'];
         $_SESSION['tel'] = $row['tel'];
         $_SESSION['picture'] = $row['picture'];
         $_SESSION['address'] = $row['address'];
-        $_SESSION['level'] = $_row['level'];
-        $_SESSION['major'] = $_row['major'];
-        $_SESSION['sex'] = $_row['sex'];
-        $_SESSION['birthdate'] = $_row['birthdate'];
+        $_SESSION['level'] = $row['level'];
+        $_SESSION['major'] = $row['major'];
+        $_SESSION['sex'] = $row['sex'];
+        $_SESSION['birthdate'] = $row['birthdate'];
     } elseif ($isAdmmin = 'Y') {
         $_SESSION['tel'] = $row['tel'];
         $_SESSION['address'] = $row['address'];
         $_SESSION['position'] = $row['position'];
+        $_SESSION['full_position'] = $row['full_position'];
         //$_SESSION['picture'] = $row['picture'];
     }
 
@@ -78,11 +81,10 @@ if (isset($_SESSION['username'])) {
     }
 </script>
 
-<div class="container" align="center" style="padding-top: 100px;">
+<div class="container" align="center" style="padding-top: 50px;">
     <div class="card" style="width: 500px;">
         <form method="post" action="index.php">
-            <!--<img class="card-img-top"
-                 width="" alt="Card image cap">-->
+            <img class="card-img-top" src="img/KU.png"  alt="Card image cap">
             <div class="card-footer">
                 <div class="form-group" align="left">
 
