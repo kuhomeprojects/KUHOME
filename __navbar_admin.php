@@ -28,6 +28,10 @@
                 <a class="nav-link" href="_tower.php">ข้อมูลหอพัก</a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="_manage_room.php">จัดการหอพัก</a>
+            </li>
+
 
             </li>
 

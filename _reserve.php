@@ -73,7 +73,7 @@ if (isset($_GET['searchKey'])) {
                     html += '</tr>';
                 })
                 $("#book_list").html(html);
-                $("#bookDetailModal").modal();
+                $("#bookedDetailModal").modal();
                 console.log(json);
             })
         }
@@ -81,7 +81,10 @@ if (isset($_GET['searchKey'])) {
         function insertBookingDetail() {
             if (confirm('ต้องการสมัครเข้าพัก ?')) {
                 $.post('SQL_Insert/insertBookDetail.php', bookingDetail, r => {
-                    console.log(r);
+                    if(r=='true' || r==true){
+                        alert('จองหอสำเร็จ');
+                        location.reload();
+                    }
                 });
             }
         }
@@ -215,13 +218,13 @@ include '__navbar_admin.php';
 </html>
 
 
-<div class="modal fade " id="bookDetailModal" tabindex="-1" role="dialog" aria-labelledby="bookDetailModalLabel"
+<div class="modal fade " id="bookedDetailModal" tabindex="-1" role="dialog" aria-labelledby="bookedDetailModalLabel"
      aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="bookDetailModalLabel"><i class="fa fa-users"></i> แจ้งปัญหา/ข้อขัดข้อง</h5>
+                <h5 class="modal-title" id="bookedDetailModalLabel"><i class="fa fa-users"></i> แจ้งปัญหา/ข้อขัดข้อง</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
