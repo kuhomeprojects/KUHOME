@@ -97,7 +97,7 @@ include '__navbar_admin.php';
                             <td><?php echo $temp['tower_name'] ?></td>
                             <td><?php echo $temp['tel'] ?></td>
                             <td><?php echo $temp['status'] ?></td>
-                            <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_tower_insert.php?tower_no=<?php echo $temp['tower_no']?>&type=<?php echo $temp['type']?>'"><i class="fa fa-search"></i> ดูข้อมูลหอพัก</a></td>
+                            <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_room.php?tower_no=<?php echo $temp['tower_no']?>&type=<?php echo $temp['type']?>'"><i class="fa fa-search"></i> ดูข้อมูลห้องพัก</a></td>
                             <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_tower_insert.php?tower_no=<?php echo $temp['tower_no']?>&type=<?php echo $temp['type']?>'"><i class="fa fa-edit"></i> แก้ไขหอพัก</a></td>
                         </tr>
                         <?php
