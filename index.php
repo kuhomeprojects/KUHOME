@@ -52,12 +52,20 @@ if (isset($_POST['username'])) {
         $_SESSION['major'] = $row['major'];
         $_SESSION['sex'] = $row['sex'];
         $_SESSION['birthdate'] = $row['birthdate'];
+        $sql = "SELECT * FROM booking_detail WHERE student_code ='". $_SESSION['code']."'";
+        $query = mysqli_query($conn,$sql);
+        $row_cnt = $query->num_rows;
+        if($row_cnt>0){
+            $_SESSION['book_status'] = 'Y';
+        }else{
+            $_SESSION['book_status'] = 'N';
+        }
     } elseif ($isAdmmin = 'Y') {
         $_SESSION['tel'] = $row['tel'];
         $_SESSION['address'] = $row['address'];
         $_SESSION['position'] = $row['position'];
         $_SESSION['full_position'] = $row['full_position'];
-        //$_SESSION['picture'] = $row['picture'];
+        $_SESSION['book_status'] = 'N';
     }
 
 }

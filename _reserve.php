@@ -3,7 +3,6 @@ include '__connect.php';
 include '__checkSession.php';
 
 
-
 $sql = "select b.start_date,
        b.end_date,
        r.room_no,
@@ -48,29 +47,29 @@ if (isset($_GET['searchKey'])) {
         });
 
         let bookingDetail = {
-            type:"",
-            tower_no:"",
-            room_no:""
+            type: "",
+            tower_no: "",
+            room_no: ""
         }
 
-        function initModalBooking(type,towerNo,roomNo){
-             bookingDetail = {
-                type:type,
-                tower_no:towerNo,
-                room_no:roomNo
+        function initModalBooking(type, towerNo, roomNo) {
+            bookingDetail = {
+                type: type,
+                tower_no: towerNo,
+                room_no: roomNo
             }
-            $.get('SQL_Select/selectRoomBookedList.php?type='+type+"&tower_no="+towerNo+"&room_no="+roomNo,r=>{
+            $.get('SQL_Select/selectRoomBookedList.php?type=' + type + "&tower_no=" + towerNo + "&room_no=" + roomNo, r => {
                 let json = JSON.parse(r);
                 let html = '';
-                json.map((m,i)=>{
+                json.map((m, i) => {
                     html += '<tr>';
-                    html += '<td>'+(i+1)+'</td>';
-                    html += '<td>'+m.name+'</td>';
-                    html += '<td>'+m.department+'</td>';
-                    html += '<td>'+m.major+'</td>';
-                    html += '<td>'+m.level+'</td>';
-                    html += '<td>'+m.tel+'</td>';
-                    html += '<td>'+m.full_status+'</td>';
+                    html += '<td>' + (i + 1) + '</td>';
+                    html += '<td>' + m.name + '</td>';
+                    html += '<td>' + m.department + '</td>';
+                    html += '<td>' + m.major + '</td>';
+                    html += '<td>' + m.level + '</td>';
+                    html += '<td>' + m.tel + '</td>';
+                    html += '<td>' + m.full_status + '</td>';
                     html += '</tr>';
                 })
                 $("#book_list").html(html);
@@ -78,9 +77,10 @@ if (isset($_GET['searchKey'])) {
                 console.log(json);
             })
         }
-        function insertBookingDetail(){
-            if(confirm('ต้องการสมัครเข้าพัก ?')){
-                $.post('SQL_Insert/insertBookDetail.php',bookingDetail,r=>{
+
+        function insertBookingDetail() {
+            if (confirm('ต้องการสมัครเข้าพัก ?')) {
+                $.post('SQL_Insert/insertBookDetail.php', bookingDetail, r => {
                     console.log(r);
                 });
             }
@@ -104,9 +104,10 @@ include '__navbar_admin.php';
                         <div class="form-group">
                             <label>ประเภทตึก</label>
                             <select class="custom-select" name="searchType" id="searchType" value="">
-                                <option value="" <?php if($Stype=='') echo 'selected'; ?> >-- เลือกประเภทหอ --</option>
-                                <option value="M" <?php if($Stype=='M') echo 'selected'; ?>>ชาย</option>
-                                <option value="F" <?php if($Stype=='F') echo 'selected'; ?>>หญิง</option>
+                                <option value="" <?php if ($Stype == '') echo 'selected'; ?> >-- เลือกประเภทหอ --
+                                </option>
+                                <option value="M" <?php if ($Stype == 'M') echo 'selected'; ?>>ชาย</option>
+                                <option value="F" <?php if ($Stype == 'F') echo 'selected'; ?>>หญิง</option>
                             </select>
                         </div>
                     </div>
@@ -115,7 +116,7 @@ include '__navbar_admin.php';
                         <div class="form-group">
                             <label>หมายเลขตึก</label>
                             <input class="form-control" id="searchTowerNo" name="searchTowerNo" type="text"
-                                   value="<?php echo $STowerNo;?>">
+                                   value="<?php echo $STowerNo; ?>">
                         </div>
 
                     </div>
@@ -124,14 +125,16 @@ include '__navbar_admin.php';
                     <div class=" col col-sm-3 col-md-3 col-lg-3">
                         <div class="form-group">
                             <label>เลขที่ห้อง</label>
-                            <input class="form-control" name="searchRoomNo" id="searchRoomNo" value="<?php echo $SRoomNo;?>">
+                            <input class="form-control" name="searchRoomNo" id="searchRoomNo"
+                                   value="<?php echo $SRoomNo; ?>">
                         </div>
                     </div>
 
                     <div class=" col col-sm-3 col-md-3 col-lg-3">
                         <div class="form-group">
                             <label>ขนาดห้อง</label>
-                            <input class="form-control" type="number" name="searchRoomSize" id="searchRoomSize" value="<?php echo $SSize;?>">
+                            <input class="form-control" type="number" name="searchRoomSize" id="searchRoomSize"
+                                   value="<?php echo $SSize; ?>">
                         </div>
                     </div>
                     <hr>
@@ -188,12 +191,15 @@ include '__navbar_admin.php';
                             <td><?php echo $temp['room_staus'] ?></td>
                             <td><?php echo $temp['cost'] ?></td>
                             <td><?php echo $temp['current_size'] ?>/<?php echo $temp['size'] ?></td>
-                            <td><button class="btn btn-outline-info btn-sm" onclick="initModalBooking(
-                                '<?php echo $temp['type'] ?>',
-                                '<?php echo $temp['tower_no'] ?>',
-                                '<?php echo $temp['room_no'] ?>'
-                            )">
-                                    <i class="fa fa-list"></i> ดูรายละเอียด</button></td>
+                            <td>
+                                <button class="btn btn-outline-info btn-sm" onclick="initModalBooking(
+                                        '<?php echo $temp['type'] ?>',
+                                        '<?php echo $temp['tower_no'] ?>',
+                                        '<?php echo $temp['room_no'] ?>'
+                                        )">
+                                    <i class="fa fa-list"></i> ดูรายละเอียด
+                                </button>
+                            </td>
                         </tr>
                         <?php
                     }
@@ -248,11 +254,23 @@ include '__navbar_admin.php';
                 <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fa fa-times"></i> ปิด
                 </button>
 
-                <button type="button" class="btn btn-primary" onclick="insertBookingDetail()"><i
-                            class="fa fa-check"></i>
-                    สมัครห้อง
-                </button>
-
+                <?php
+                if ($_SESSION['book_status'] == 'N') {
+                    ?>
+                    <button type="button" class="btn btn-primary" onclick="insertBookingDetail()"><i
+                                class="fa fa-check"></i>
+                        สมัครห้อง
+                    </button>
+                    <?php
+                }else{
+                ?>
+                    <button type="button" class="btn btn-outline-warning" disabled ><i
+                                class="fa fa-times"></i>
+                        คุณได้สมัครไว้แล้ว
+                    </button>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>

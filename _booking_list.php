@@ -94,6 +94,8 @@ if (isset($_POST['editData'])) {
         </div>
         <div class="card-body">
             <div class="container">
+
+                <div class="table-responsive">
                 <table class="table table-bordered rounded text-center" id="bookingTable">
                     <thead class="bg-warning">
                     <tr>
@@ -146,6 +148,7 @@ if (isset($_POST['editData'])) {
                     <?php } ?>
                     </tbody>
                 </table>
+            </div>
             </div>
         </div>
     </div>

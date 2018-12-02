@@ -54,7 +54,7 @@ include '__navbar_admin.php';
                 <div class=" col-3 col-sm col-md col-lg">
                     <div class="img-area">
                         <a href="_information_create.php"> <img src="img/icon/news.png" class="image"
-                                                           width="125" height="125">
+                                                                width="125" height="125">
                             <div class="overlay bg-primary ">
                                 <div class="text"> เพิ่มข่าวสารใหม่</div>
                             </div>
@@ -63,8 +63,9 @@ include '__navbar_admin.php';
                 </div>
                 <div class=" col-3 col-sm col-md col-lg">
                     <div class="img-area ">
-                        <a data-toggle="modal" data-target="#reportModal"> <img src="img/icon/uninsurance.png" class=" image"
-                                          width="125" height="125">
+                        <a data-toggle="modal" data-target="#reportModal"> <img src="img/icon/uninsurance.png"
+                                                                                class=" image"
+                                                                                width="125" height="125">
                             <div class="overlay bg-warning ">
                                 <div class="text"> แจ้งปัญหา</div>
                             </div>
@@ -79,74 +80,87 @@ include '__navbar_admin.php';
     <div class="card">
 
         <div class="card-body">
-            <div class="row" >
+            <div class="row">
                 <div class=" col col-sm col-md col-lg">
                     <div class="card">
-                        <div class="card-header bg-success text-white" id="infoHeader" data-toggle="collapse" href="#collapseInfo"><strong><i class="fa fa-list"></i> รายการข่าวสาร/กิจกรรม</strong> </div>
+                        <div class="card-header bg-success text-white" id="infoHeader" data-toggle="collapse"
+                             href="#collapseInfo"><strong><i class="fa fa-list"></i> รายการข่าวสาร/กิจกรรม</strong>
+                        </div>
                         <div class="card-body collapse" id="collapseInfo">
-                            <table id="infoList" class="table table-bordered rounded">
-                                <thead class="bg-success text-white">
-                                <tr>
-                                    <th>หัวข้อ</th>
-                                    <th>วันที่สร้าง</th>
-                                    <th>สร้างโดย</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                $sql = "select i.info_name,i.info_id,i.info_date,u.name from information i inner join user u on u.username = i.info_owner";
-                                $info_list = mysqli_query($conn, $sql);
-                                while ($temp = mysqli_fetch_array($info_list)) {
-                                    ?>
+                            <div class="table-responsive">
+                                <table id="infoList" class="table table-bordered rounded">
+                                    <thead class="bg-success text-white">
                                     <tr>
-                                        <td><a href="_information_content.php?id=<?php echo $temp['info_id'];?>"><?php echo $temp['info_name']; ?></a></td>
-                                        <td><?php echo $temp['info_date']; ?></td>
-                                        <td><?php echo $temp['name']; ?></td>
+                                        <th>หัวข้อ</th>
+                                        <th>วันที่สร้าง</th>
+                                        <th>สร้างโดย</th>
                                     </tr>
+                                    </thead>
+                                    <tbody>
                                     <?php
-                                }
-                                ?>
-                                </tbody>
-                            </table>
+                                    $sql = "select i.info_name,i.info_id,i.info_date,u.name from information i inner join user u on u.username = i.info_owner";
+                                    $info_list = mysqli_query($conn, $sql);
+                                    while ($temp = mysqli_fetch_array($info_list)) {
+                                        ?>
+                                        <tr>
+                                            <td>
+                                                <a href="_information_content.php?id=<?php echo $temp['info_id']; ?>"><?php echo $temp['info_name']; ?></a>
+                                            </td>
+                                            <td><?php echo $temp['info_date']; ?></td>
+                                            <td><?php echo $temp['name']; ?></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row"  style="margin-top: 20px;">
+            <div class="row" style="margin-top: 20px;">
                 <div class=" col col-sm col-md col-lg">
                     <div class="card">
-                        <div class="card-header bg-warning text-white" id="reportHeader"  data-toggle="collapse" href="#collapseReport"><strong><i class="fa fa-exclamation-triangle"></i> การแจ้งปัญหา</strong> </div>
+                        <div class="card-header bg-warning text-white" id="reportHeader" data-toggle="collapse"
+                             href="#collapseReport"><strong><i class="fa fa-exclamation-triangle"></i>
+                                การแจ้งปัญหา</strong></div>
                         <div class="card-body collapse" id="collapseReport">
-                            <table id="reportListTable" class="table table-bordered rounded">
-                                <thead class="bg-warning text-white">
-                                <tr>
-                                    <th>หัวข้อ</th>
-                                    <th>วันที่สร้าง</th>
-                                    <th>ตึก</th>
-                                    <th>ห้อง</th>
-                                    <th>สร้างโดย</th>
-                                    <th>เบอร์ติดต่อ</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <?php
-                                $sql = "select i.*,u.name from report i inner join user u on u.username = i.report_owner ORDER by report_date";
-                                $info_list = mysqli_query($conn, $sql);
-                                while ($temp = mysqli_fetch_array($info_list)) {
-                                    ?>
+                            <div class="table-responsive">
+                                <table id="reportListTable" class="table table-bordered rounded">
+                                    <thead class="bg-warning text-white">
                                     <tr>
-                                        <td><a href="#/"><?php echo $temp['report_content']; ?></a></td>
-                                        <td><?php echo $temp['report_date']; ?></td>
-                                        <td><?php echo $temp['tower']; ?></td>
-                                        <td><?php echo $temp['room']; ?></td>
-                                        <td><?php echo $temp['name']; ?></td>
-                                        <td><?php echo $temp['tel']; ?></td>
+                                        <th>หัวข้อ</th>
+                                        <th>วันที่สร้าง</th>
+                                        <th>ตึก</th>
+                                        <th>เลขตึก</th>
+                                        <th>เลขห้อง</th>
+                                        <th>สร้างโดย</th>
+                                        <th>เบอร์ติดต่อ</th>
                                     </tr>
+                                    </thead>
+                                    <tbody>
                                     <?php
-                                }
-                                ?>
-                                </tbody>
-                            </table>
+                                    //if($_SESSION['type']=='N') $table = 'student'; else $table='user';
+                                    $sql = "select i.*,s.full_status,u.name from report i inner join status s on s.status = i.type inner join student u on u.username = i.report_owner ORDER by report_date";
+                                    $info_list = mysqli_query($conn, $sql);
+                                    while ($temp = mysqli_fetch_array($info_list)) {
+                                        ?>
+                                        <tr>
+                                            <td><a href="#/"><?php echo $temp['report_content']; ?></a></td>
+                                            <td><?php echo $temp['report_date']; ?></td>
+                                            <td><?php echo $temp['full_status']; ?></td>
+                                            <td><?php echo $temp['tower']; ?></td>
+                                            <td><?php echo $temp['room']; ?></td>
+                                            <td><?php echo $temp['name']; ?></td>
+                                            <td><?php echo $temp['tel']; ?></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -43,6 +43,16 @@
                     ?>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                    <?php
+                    if($_SESSION['book_status']=='Y') {
+                    ?>
+                    <a class="dropdown-item" data-toggle="modal"  data-target="#bookDetailModal" >
+                        <i class="fa fa-print"></i> ดูรายละเอียดการจอง</a>
+                    <?php
+                         }
+                    ?>
+
                     <a class="dropdown-item" data-toggle="modal" onclick="initReportModal()" data-target="#reportModal"><i class="fa fa-exclamation-triangle"></i> แจ้งปัญหา</a>
 
                  <?php
@@ -56,8 +66,7 @@
                      <a class="dropdown-item" href="_nisit_insert.php?code=<?php echo $_SESSION['code'];?>">
                          <i class="fa fa-user-circle-o"></i> Profile</a>
                      <?php
-                 }
-                 ?>
+                 }?>
 
                 </div>
             </li>
@@ -83,5 +92,7 @@
 <?php include '__report_modal.php'; ?>
 
 <?php if($_SESSION['type']) include '__profile_modal.php'; ?>
+
+<?php if($_SESSION['book_status']=='Y') include '__book_detail_modal.php'; ?>
 
 

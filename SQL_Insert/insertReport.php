@@ -6,7 +6,8 @@ if ($_POST) {
     $room = $_POST['room'];
     $tower = $_POST['tower'];
     $tel = $_POST['report_tel'];
-    $sql = "insert into report values(null,now(),'$content','$user','$room','$tower','N','$tel')";
+    $type = $_POST['type'];
+    $sql = "insert into report values(null,now(),'$content','$user','$room','$tower','N','$tel','$type')";
     $query = mysqli_query($conn, $sql);
     echo json_encode($query);
 }
