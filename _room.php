@@ -1,9 +1,13 @@
 <?php
 include '__connect.php';
 include '__checkSession.php';
-
-if (isset($_POST['insertBooking'])) {
-
+if (isset($_GET['type'])&&isset($_GET['tower_no'])) {
+    $type = $_GET['type'];
+    $tower_no = $_GET['tower_no'];
+    $sql = "select * from tower where tower_no = '$tower_no' AND type = '$type'";
+    $result = mysqli_query($conn, $sql);
+    $temp = mysqli_fetch_array($result);
+    $tower_name = $temp['tower_name'];
 }
 ?>
 <!Document>
@@ -29,7 +33,7 @@ include '__navbar_admin.php';
         <div class="card-header">
             <nav aria-label="breadcrumb  bg-dark">
 
-                <h5>ข้อมูลห้องพัก</h5>
+                <h5>ข้อมูลห้องพัก <?php echo $tower_name; ?></h5>
 
             </nav>
         </div>
@@ -38,7 +42,7 @@ include '__navbar_admin.php';
 
                 <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_room_insert.php?tower_no=<?php echo $_GET['tower_no']?>&type=<?php echo $_GET['type']?>'"><i class="fa fa-search"></i>เพิ่มห้องพัก</a></td>
                 <hr>
-
+                <div class="table-responsive">
                 <table id="reportContentList" class="table table-bordered rounded">
                     <thead>
                     <tr>
@@ -81,6 +85,7 @@ include '__navbar_admin.php';
                     ?>
                     </tbody>
                 </table>
+                </div>
             </div>
 
         </div>

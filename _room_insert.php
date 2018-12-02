@@ -15,7 +15,7 @@ if (isset($_GET['room_no']) && isset($_GET['tower_no']) && isset($_GET['type']))
     $row = mysqli_fetch_assoc($result);
     if ($row) {
         $tower_name = $row['tower_name'];
-        $headetroom_update = "<nav aria-label='breadcrumb  bg-dark'><h5><i class='fa fa-star'></i> แก้ไขข้อมูลห้องพักของหอพัก$tower_name ห้อง$room_no  </h5></nav>";
+        $headetroom_update = "<nav aria-label='breadcrumb  bg-dark'><h5><i class='fa fa-star'></i> แก้ไขข้อมูลห้องพัก </h5></nav>";
 
         $sql = "SELECT * FROM `room` WHERE `room_no` = '$room_no' AND `tower_no` = '$tower_no'";
         $result = mysqli_query($conn, $sql);
@@ -43,7 +43,7 @@ if (isset($_GET['room_no']) && isset($_GET['tower_no']) && isset($_GET['type']))
     $row = mysqli_fetch_assoc($result);
     if ($row) {
         $tower_name = $row['tower_name'];
-        $headetroom_insert = "<nav aria-label='breadcrumb  bg-dark'><h5><i class='fa fa-star'></i> เพิ่มข้อมูลห้องพักของหอพัก$tower_name  </h5></nav>";
+        $headetroom_insert = "<nav aria-label='breadcrumb  bg-dark'><h5><i class='fa fa-star'></i> เพิ่มข้อมูลห้องพัก</h5></nav>";
     }
 }
 
@@ -137,27 +137,6 @@ include '__navbar_admin.php';
                                 <label class="font-weight-bold">กลุ่มหอ</label>
                                 <select class="form-control" id="type" name="type" required>
 
-                                    <?php
-                                    if (isset($_GET['type']) && isset($_GET['tower_no'])) {
-                                        if ($type == 'M') {
-                                            echo "
-                                                <option selected value='M'>หอชาย</option>
-                                                <option value='F'>หอหญิง</option>";
-                                        } else if ($type == 'F') {
-                                            echo "
-                                                <option value='M'>หอชาย</option>
-                                                <option selected value='F'>หอหญิง</option>";
-                                        } else {
-                                            echo "<option></option>
-                                                <option value='M'>หอชาย</option>
-                                                <option value='F'>หอหญิง</option>";
-                                        }
-                                    } else {
-                                        echo "<option></option>
-                                                <option value='M'>หอชาย</option>
-                                                <option value='F'>หอหญิง</option>";
-                                    }
-                                    ?>
 
                                 </select>
                             </div>
