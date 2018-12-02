@@ -67,6 +67,7 @@ include '__navbar_admin.php';
         <div class="card-body">
             <div style="width: 85%" class="mx-auto">
                 <a class="btn btn-sm btn-primary text-white" style="float: left" onclick="window.location = '_tower_insert.php'"><i class="fa fa-plus"></i> เพิ่มข้อมมูลหอพัก</a>
+                <div class="table-responsive">
                 <table id="reportContentList" class="table table-bordered rounded">
                     <thead>
                     <tr>
@@ -97,7 +98,7 @@ include '__navbar_admin.php';
                             <td><?php echo $temp['tower_name'] ?></td>
                             <td><?php echo $temp['tel'] ?></td>
                             <td><?php echo $temp['status'] ?></td>
-                            <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_tower_insert.php?tower_no=<?php echo $temp['tower_no']?>&type=<?php echo $temp['type']?>'"><i class="fa fa-search"></i> ดูข้อมูลหอพัก</a></td>
+                            <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_room.php?tower_no=<?php echo $temp['tower_no']?>&type=<?php echo $temp['type']?>'"><i class="fa fa-search"></i> ดูข้อมูลห้องพัก</a></td>
                             <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_tower_insert.php?tower_no=<?php echo $temp['tower_no']?>&type=<?php echo $temp['type']?>'"><i class="fa fa-edit"></i> แก้ไขหอพัก</a></td>
                         </tr>
                         <?php
@@ -105,6 +106,7 @@ include '__navbar_admin.php';
                     ?>
                     </tbody>
                 </table>
+                </div>
             </div>
 
         </div>

@@ -104,9 +104,14 @@ include '__navbar_admin.php';
     <div class="container-fluid" style="margin-top: 10px; margin-bottom: 150px;">
         <div class="card">
             <div class="card-header">
-                <nav aria-label="breadcrumb  bg-dark">
-                    <h5><i class="fa fa-star"></i> จัดการการจอง</h5>
-                </nav>
+            <?php
+            if (isset($_GET['type']) && isset($_GET['tower_no'])) {
+                echo '<nav aria-label="breadcrumb  bg-dark"><h5><i class="fa fa-star"></i> แก้ไขหอพัก </h5></nav>';
+            }else{
+                echo '<nav aria-label="breadcrumb  bg-dark"><h5><i class="fa fa-star"></i> เพิ่มหอพัก </h5></nav>';
+            }
+            ?>
+
             </div>
             <div class="card-body">
                 <div class="container">
