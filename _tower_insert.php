@@ -250,7 +250,7 @@ include '__navbar_admin.php';
                         }
                         ?>
                         <span style="margin: 10px"></span>
-                        <button onclick="window.location = '_tower.php'" type="button"
+                        <button onclick="window.history.back();" type="button"
                                 class="btn btn-danger col-4 col-sm-4 col-lg-4 col-md-4 "><i class="fa fa-times"></i>
                             ยกเลิก
                         </button>
