@@ -2,7 +2,9 @@
 <?php
 include '__connect.php';
 include '__checkSession.php';
-
+if($_SESSION['userType'] == 'S'){
+    header("Location: _home.php");
+}
 if(isset($_POST['insertInfo'])){
     $info_owner = $_SESSION["username"];
     $info_name = $_POST['info_name'];

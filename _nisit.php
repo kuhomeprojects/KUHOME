@@ -16,6 +16,9 @@ include '__checkSession.php';
 <body>
 <?php
 include '__navbar_admin.php';
+if($_SESSION['userType'] != 'A'){
+    header("Location: _home.php");
+}
 ?>
 <div class="container-fluid" style="margin-top: 10px;">
 
@@ -27,6 +30,8 @@ include '__navbar_admin.php';
             </div>
             <div class="card-body">
                 <div style="width: 85%" class="mx-auto">
+
+
                     <a class="btn btn-sm btn-primary text-white" style="float: left" onclick="window.location = '_nisit_insert.php'"><i class="fa fa-plus"></i> เพิ่มรายชื่อนิสิต</a>
 
                     <div class="table-responsive">
@@ -44,6 +49,8 @@ include '__navbar_admin.php';
                         </tr>
                         </thead>
                         <tbody>
+
+
                         <?php
 
                         $sql = "SELECT * FROM `student`";

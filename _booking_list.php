@@ -1,5 +1,8 @@
 <?php
 
+if($_SESSION['userType'] != 'A'){
+    header("Location: _home.php");
+}
 //STR_TO_DATE('$install_date','%d/%c/%Y')'$start_date'
 if (isset($_POST['editData'])) {
     $start_date = $_POST['startDate'];

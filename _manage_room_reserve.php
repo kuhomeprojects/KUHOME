@@ -1,4 +1,7 @@
 <?php
+if($_SESSION['userType'] != 'A'){
+    header("Location: _home.php");
+}
 $sqlManageReserve = "select distinct d.*,
                 s.name,
                 s.department,

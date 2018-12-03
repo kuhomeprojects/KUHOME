@@ -1,5 +1,9 @@
 <?php
+
 $code = $_GET['code'];
+if($code == ''){
+    header("Location: _home.php");
+}
 include '__connect.php';
 $sql = "select distinct d.*,
        s.name,

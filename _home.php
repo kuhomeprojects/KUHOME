@@ -2,6 +2,7 @@
 include '__connect.php';
 include '__checkSession.php';
 
+
 ?>
 <!Document>
 <html>
@@ -21,7 +22,7 @@ $currentNew = mysqli_fetch_assoc($query);
 ?>
 <div class="container-fluid" style="margin-top: 10px;">
 
-    <div class="jumbotron jumbotron-fluid" style='background:transparent  url("img/bgjumbro.jpg"); font-family: headers;'
+    <div class="jumbotron jumbotron-fluid" style='background:transparent  url("img/bgjumbro.jpg"); font-family: headers;'>
         <div class="row">
             <div class="col-4 col-lg-4 col-sm-4 col-md-4">
                 <img class=" float-right" src="img/KU.png" height="350">

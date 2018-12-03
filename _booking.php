@@ -1,6 +1,9 @@
 <?php
 include '__connect.php';
 include '__checkSession.php';
+if($_SESSION['userType'] != 'A'){
+    header("Location: _home.php");
+}
 $msg = '';
 if (isset($_POST['insertBooking'])) {
     $startDate = $_POST['startDate'];
