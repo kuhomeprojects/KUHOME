@@ -142,19 +142,19 @@ include '__navbar_admin.php';
                             </div>
                         </div>
                     </div>
-<!---->
-<!--                    <div class="row">-->
-<!--                        <div class="col col-sm col-lg col-md">-->
-<!--                            <div class="form-group">-->
-<!--                                <label>รายละเอียด :</label>-->
-<!--                                <input name="tower_name" id="tower_name" class="form-control" required-->
-<!--                                       placeholder="ชื่อตึก" value="--><?php //echo $tower_name; ?><!--">-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!---->
-<!--                    <div class="row">-->
-<!--                        <div class="col col-sm col-lg col-md">-->
+
+                    <div class="row">
+                        <div class="col col-sm col-lg col-md">
+                            <div class="form-group">
+                                <label>รายละเอียด :</label>
+                                <input name="tower_name" id="tower_name" class="form-control" required
+                                       placeholder="ชื่อตึก" value="<?php echo $tower_name; ?>">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col col-sm col-lg col-md">
 <!--                            <div class="form-group">-->
 <!--                                <input type="number" name="tower_no" id="tower_no" class="form-control" required-->
 <!--                                       placeholder="เลขตึก" value="--><?php //echo $tower_no; ?><!--">-->
