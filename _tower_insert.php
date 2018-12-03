@@ -1,6 +1,10 @@
 <?php
 include '__connect.php';
 include '__checkSession.php';
+
+if($_SESSION['userType'] == 'S'){
+    header("Location: _home.php");
+}
 $tower_no = "";
 $type = "";
 $tel = "";

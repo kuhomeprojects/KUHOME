@@ -2,6 +2,10 @@
 include '__connect.php';
 include '__checkSession.php';
 
+if($_SESSION['userType'] == 'S'){
+    header("Location: _home.php");
+}
+
 ?>
 <p></p>
 <!Document>

@@ -38,6 +38,7 @@ if (isset($_POST['username'])) {
         $msg = "<span class='text-danger'><i class='fa fa-times'></i> เข้าสู่ระบบไม่สำเร็จ กรุณาตรวจสอบ username/password อีกครั้ง</span>";
     }
     if ($isAdmmin == 'N') {
+        $_SESSION['userType'] = 'N';
         $_SESSION['department'] = $row['department'];
         $_SESSION['teacher_name'] = $row['teacher_name'];
         $_SESSION['parent_tel'] = $row['parent_tel'];
@@ -66,6 +67,7 @@ if (isset($_POST['username'])) {
         $_SESSION['position'] = $row['position'];
         $_SESSION['full_position'] = $row['full_position'];
         $_SESSION['book_status'] = 'N';
+        $_SESSION['userType'] =  $row['position'];
     }
 
 }

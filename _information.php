@@ -2,6 +2,10 @@
 include '__connect.php';
 include '__checkSession.php';
 
+if($_SESSION['userType'] == 'S'){
+    header("Location: _home.php");
+}
+
 if (isset($_POST['insertInfo'])) {
     $info_owner = $_SESSION["admin"];
     $info_name = $_POST['info_name'];
@@ -45,6 +49,10 @@ include '__navbar_admin.php';
 
     })
 </script>
+
+<?php
+if ($_SESSION['userType'] == 'A') {
+?>
 <div class="container-fluid" style="margin-top: 20px; margin-bottom: 30px;">
     <div class="card">
         <div class="card-header bg-success text-white font-weight-bold"><i class="fa fa-star"></i>
@@ -77,6 +85,9 @@ include '__navbar_admin.php';
         </div>
     </div>
 </div>
+<?php
+}
+?>
 <div class="container-fluid" style="margin-top: 20px; margin-bottom: 30px;">
     <div class="card">
 
@@ -120,6 +131,9 @@ include '__navbar_admin.php';
                     </div>
                 </div>
             </div>
+            <?php
+            if ($_SESSION['userType'] == 'A') {
+            ?>
             <div class="row" style="margin-top: 20px;">
                 <div class=" col col-sm col-md col-lg">
                     <div class="card">
@@ -167,6 +181,8 @@ include '__navbar_admin.php';
                     </div>
                 </div>
             </div>
+
+            <?php }?>
         </div>
     </div>
 </div>

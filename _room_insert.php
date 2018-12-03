@@ -3,6 +3,9 @@ include '__connect.php';
 include '__checkSession.php';
 
 
+if($_SESSION['userType'] == 'S'){
+    header("Location: _home.php");
+}
 if (isset($_GET['room_no']) && isset($_GET['tower_no']) && isset($_GET['type'])) {
 //เแก้ไข
 
@@ -48,8 +51,6 @@ if (isset($_GET['room_no']) && isset($_GET['tower_no']) && isset($_GET['type']))
 }
 
 if (isset($_POST['insertRoom'])) {
-
-
     $room_no = $_POST['room_no'];
     $tower_no = $_POST['check_tower_no'];
     $size = $_POST['size'];
@@ -57,9 +58,7 @@ if (isset($_POST['insertRoom'])) {
     $type = $_POST['check_type'];
     $cost = $_POST['cost'];
 
-    echo "$room_no , $tower_no , $size ,$status , $type , $cost";
-
-    $sql = "INSERT INTO `room` (`room_no`, `tower_no`, `size`, `status`, `type`, `cost`) VALUES ('$room_no', '$tower_no', '$size','$status', '$type', '$cost')";
+    $sql = "INSERT INTO `room` (`room_no`, `tower_no`, `size`, `status`, `type`, `cost`,`current_size`) VALUES ('$room_no', '$tower_no', '$size','$status', '$type', '$cost',0)";
     $query = mysqli_query($conn, $sql);
 
     if ($query) {
