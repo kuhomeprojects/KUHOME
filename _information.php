@@ -37,6 +37,7 @@ include '__navbar_admin.php';
     $(document).ready(() => {
 
         $("#infoList").dataTable();
+
         $("#reportListTable").dataTable();
         $("#reportHeader").click();
         $("#infoHeader").click();
@@ -123,7 +124,8 @@ include '__navbar_admin.php';
                 <div class=" col col-sm col-md col-lg">
                     <div class="card">
                         <div class="card-header bg-warning text-white" id="reportHeader" data-toggle="collapse"
-                             href="#collapseReport"><strong><i class="fa fa-exclamation-triangle"></i>
+                             href="#collapseReport"><strong>
+                                <i class="fa fa-exclamation-triangle"></i>
                                 การแจ้งปัญหา</strong></div>
                         <div class="card-body collapse" id="collapseReport">
                             <div class="table-responsive">
