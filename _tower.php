@@ -68,6 +68,7 @@ include '__navbar_admin.php';
             <div style="width: 85%" class="mx-auto">
                 <a class="btn btn-sm btn-primary text-white" style="float: left" onclick="window.location = '_tower_insert.php'"><i class="fa fa-plus"></i> เพิ่มข้อมมูลหอพัก</a>
                 <div class="table-responsive">
+                    <hr>
                 <table id="reportContentList" class="table table-bordered rounded">
                     <thead>
                     <tr>

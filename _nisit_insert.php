@@ -246,7 +246,15 @@ include '__navbar_admin.php';
         <div class="card">
             <div class="card-header">
                 <nav aria-label="breadcrumb  bg-dark">
-                    <h5></h5>
+                    <h5>
+                        <?php
+                            if ($code != null){
+                                echo "แก้ไขข้อมูลนิสิต";
+                            }else {
+                                echo "เพิ่มข้อมูลนิสิต";
+                            }
+                        ?>
+                    </h5>
                 </nav>
             </div>
             <div class="card-body">

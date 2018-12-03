@@ -22,14 +22,15 @@ include '__navbar_admin.php';
         <div class="card">
             <div class="card-header">
                 <nav aria-label="breadcrumb  bg-dark">
-                    <h5></h5>
+                    <h5>รายชื่อนิสิต</h5>
                 </nav>
             </div>
             <div class="card-body">
                 <div style="width: 85%" class="mx-auto">
                     <a class="btn btn-sm btn-primary text-white" style="float: left" onclick="window.location = '_nisit_insert.php'"><i class="fa fa-plus"></i> เพิ่มรายชื่อนิสิต</a>
-                    <div class="table-responsive">
 
+                    <div class="table-responsive">
+                        <hr>
                     <table id="reportContentList" class="table table-bordered rounded">
                         <thead>
                         <tr>
