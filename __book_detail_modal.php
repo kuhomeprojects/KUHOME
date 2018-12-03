@@ -11,7 +11,7 @@ $c_date = date_create(date("Y-m-d"));
 $r_date = date_create($bookDetail['book_date']);
 $diff = date_diff($c_date, $r_date);
 $day = $diff->format('%r%d');
-$remainDay = 7 - $day;
+$remainDay = 7 +$day;
 ?>
 <script>
 

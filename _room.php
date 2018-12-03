@@ -56,11 +56,11 @@ include '__navbar_admin.php';
                 <div class="table-responsive">
                     <table id="reportContentList" class="table table-bordered rounded">
                         <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th>ลำดับ</th>
                             <th>เลขห้อง</th>
                             <th>จำนวนที่พักได้</th>
-                            <th>สถานะ</th>
+                            <th>สถานะ<br>(จำนวนคนจอง/ขนาดห้อง)</th>
                             <?php
                             if ($_SESSION['userType'] == 'A') {
                                 ?>
@@ -82,7 +82,7 @@ include '__navbar_admin.php';
                         $result = mysqli_query($conn, $sql);
                         while ($temp = mysqli_fetch_array($result)) {
                             $count++;
-                            if ($temp['status'] == 'Y') {
+                            if ($temp['status'] == 'Y' ) {
                                 $temp['status'] = 'จองแล้ว';
                             } else if ($temp['status'] == 'N') {
                                 $temp['status'] = 'ว่าง';
@@ -90,17 +90,27 @@ include '__navbar_admin.php';
                                 $temp['status'] = 'ปรับปรุง';
                             }
                             ?>
-                            <tr>
+                            <tr class="text-center">
                                 <td><?php echo $count ?></td>
                                 <td><?php echo $temp['room_no'] ?></td>
                                 <td><?php echo $temp['size'] ?></td>
-                                <td><?php echo $temp['status'] ?></td>
                                 <?php
-                                if ($_SESSION['userType'] == 'A') {
-                                ?> <td><a class="btn btn-sm btn-primary text-white"
-                                       onclick="window.location ='_room_insert.php?tower_no=<?php echo $temp['tower_no'] ?>&room_no=<?php echo $temp['room_no'] ?>&type=<?php echo $_GET['type'] ?>'"><i
-                                                class="fa fa-edit"></i> แก้ไขห้องพัก</a></td>
+                                if($temp['status'] != 'F'){
+                                    ?>
+                                    <td ><?php echo $temp['current_size'].'/'.$temp['size'] ?></td>
                                     <?php
+                                }else{
+                                ?>
+                                <td> <?php echo $temp['status']; ?> </td>
+                                  <?php
+                                }
+                                if ($_SESSION['userType'] == 'A') {
+                                ?> <td>
+                                        <a class="btn btn-sm btn-primary text-white"
+                                       onclick="window.location ='_room_insert.php?tower_no=<?php echo $temp['tower_no'] ?>&room_no=<?php echo $temp['room_no'] ?>&type=<?php echo $_GET['type'] ?>'"><i
+                                                class="fa fa-edit"></i> แก้ไขห้องพัก</a>
+                                    </td>
+                                <?php
                                 }
                                 ?>
                             </tr>
