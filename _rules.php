@@ -42,8 +42,7 @@ if (isset($_GET['id'])) {
 include '__navbar_admin.php';
 ?>
 
-
-<div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
+<div class="container-fluid" style="margin-top: 10px; margin-bottom: 100px;">
     <div class="card">
         <div class="card-header">
             <nav aria-label="breadcrumb  bg-dark">
