@@ -57,8 +57,6 @@ if (isset($_POST['insertRoom'])) {
     $type = $_POST['check_type'];
     $cost = $_POST['cost'];
 
-    echo "$room_no , $tower_no , $size ,$status , $type , $cost";
-
     $sql = "INSERT INTO `room` (`room_no`, `tower_no`, `size`, `status`, `type`, `cost`) VALUES ('$room_no', '$tower_no', '$size','$status', '$type', '$cost')";
     $query = mysqli_query($conn, $sql);
 
