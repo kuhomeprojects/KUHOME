@@ -2,7 +2,7 @@
 include '__connect.php';
 include '__checkSession.php';
 
-if (isset($_POST['cutpoint'])){
+if (isset($_POST['cutpoint'])) {
     $rule_no = $_POST['rule_no'];
     $action_date = date("Y-m-d");;
     $action_by = $_SESSION['username'];
@@ -49,7 +49,7 @@ if ($_SESSION['userType'] != 'A') {
     header("Location: _home.php");
 }
 ?>
-<div class="container-fluid" style="margin-top: 10px;">
+<div class="container-fluid" style="margin-top: 10px; margin-bottom: 100px;">
 
     <div class="card">
         <div class="card-header">
@@ -84,7 +84,6 @@ if ($_SESSION['userType'] != 'A') {
                             $picture = $temp['picture'];
                             ?>
                             <tr>
-
                                 <td><?php echo $temp['code'] ?></td>
                                 <td><?php echo $temp['name'] ?></td>
                                 <td><?php echo $temp['tel'] ?></td>
@@ -99,81 +98,11 @@ if ($_SESSION['userType'] != 'A') {
                                 </td>
 
                                 <td>
-                                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                                            data-target="#exampleModal3">
+                                    <button type="button" class="btn btn-primary" onclick="initCutScoreModal('<?php echo $temp['code']; ?>','<?php echo $temp['name']; ?>')">
                                         หักคะแนน
                                     </button>
 
                                     <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
-                                         aria-labelledby="exampleModal3Label" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <form method="post">
-
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModal3Label">หักคะแนนนิสิต ชื่อ <?php echo $temp['name'] ?> </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                        <?php
-                                                        $sql = "select * from rule";
-                                                        $count = 0;
-                                                        $result = mysqli_query($conn, $sql);
-                                                        ?>
-
-                                                        <div class="row">
-                                                            <div class="col col-sm col-lg col-md">
-                                                                <div class="form-group">
-                                                                    <label>รหัสนิสิต :</label>
-                                                                    <input name="student_code" id="student_code" class="form-control" required value="<?php echo $temp['code'] ?>" readonly>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-
-<!--                                                        <div class="row">-->
-<!--                                                            <div class="col col-sm col-lg col-md">-->
-<!--                                                                <div class="form-group">-->
-<!--                                                                    <label>ชื่อ :</label>-->
-<!--                                                                    <input name="student_name" id="student_name" class="form-control" required value="--><?php //echo $temp['name'] ?><!--" readonly>-->
-<!--                                                                </div>-->
-<!--                                                            </div>-->
-<!--                                                        </div>-->
-
-                                                        <div class="form-group">
-                                                            <label>หักคะแนน</label>
-                                                            <input list="rule_no_List"
-                                                                   id="rule_no"
-                                                                   name="rule_no"
-                                                                   data-link-field="rule_no_List"
-                                                                   class="form-control"
-                                                                   placeholder="พิมพ์รหัสหรือชื่อเพื่อเลือกหัวข้อ" required/>
-                                                            <datalist id="rule_no_List">
-                                                                <?php
-                                                                $count = 0;
-                                                                while ($temp = mysqli_fetch_array($result)) {
-                                                                    ?>
-                                                                    <option value="<?php echo $temp['rule_no']; ?>"> <?php echo $temp['detail']." (".$temp['remark'] .") "; ?> </option>
-                                                                <?php } ?>
-                                                            </datalist>
-                                                        </div>
-
-
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary"
-                                                            data-dismiss="modal">ปิด
-                                                    </button>
-                                                    <button type="submit" name="cutpoint" class="btn btn-primary">ยืนยันการหักคะแนน</button>
-                                                </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </td>
                             </tr>
                             <?php
@@ -194,3 +123,75 @@ if ($_SESSION['userType'] != 'A') {
 </div>
 </body>
 </html>
+<script>
+    function initCutScoreModal(code,name){
+        $("#exampleModal3Label").html('หักคะแนนนิสิต ชื่อ '+name);
+        $("#student_code").val(code);
+        $("#exampleModal3").modal();
+    }
+</script>
+<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModal3Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form method="post">
+
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModal3Label">หักคะแนนนิสิต
+                        ชื่อ </h5>
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <?php
+                    $sql = "select * from rule";
+                    $count = 0;
+                    $result = mysqli_query($conn, $sql);
+                    ?>
+
+                    <div class="row">
+                        <div class="col col-sm col-lg col-md">
+                            <div class="form-group">
+                                <label>รหัสนิสิต :</label>
+                                <input name="student_code" id="student_code"
+                                       class="form-control" required
+                                       value="" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>หักคะแนน</label>
+                        <input list="rule_no_List"
+                               id="rule_no"
+                               name="rule_no"
+                               data-link-field="rule_no_List"
+                               class="form-control"
+                               placeholder="พิมพ์รหัสหรือชื่อเพื่อเลือกหัวข้อ"
+                               required/>
+                        <datalist id="rule_no_List">
+                            <?php
+                            $count = 0;
+                            while ($temp = mysqli_fetch_array($result)) {
+                                ?>
+                                <option value="<?php echo $temp['rule_no']; ?>"> <?php echo $temp['detail'] . " (" . $temp['remark'] . ") "; ?> </option>
+                            <?php } ?>
+                        </datalist>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">ปิด
+                    </button>
+                    <button type="submit" name="cutpoint" class="btn btn-primary">
+                        ยืนยันการหักคะแนน
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 <?php
 include '__connect.php';
 include '__checkSession.php';
-if($_SESSION['userType'] == 'S'){
+if ($_SESSION['userType'] == 'S') {
     header("Location: _home.php");
 }
 
@@ -83,7 +83,7 @@ if (isset($_GET['searchKey'])) {
         function insertBookingDetail() {
             if (confirm('ต้องการสมัครเข้าพัก ?')) {
                 $.post('SQL_Insert/insertBookDetail.php', bookingDetail, r => {
-                    if(r=='true' || r==true){
+                    if (r == 'true' || r == true) {
                         alert('จองหอสำเร็จ');
                         location.reload();
                     }
@@ -226,7 +226,8 @@ include '__navbar_admin.php';
         <div class="modal-content">
 
             <div class="modal-header">
-                <h5 class="modal-title" id="bookedDetailModalLabel"><i class="fa fa-users"></i> แจ้งปัญหา/ข้อขัดข้อง</h5>
+                <h5 class="modal-title" id="bookedDetailModalLabel"><i class="fa fa-users"></i> แจ้งปัญหา/ข้อขัดข้อง
+                </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -260,20 +261,22 @@ include '__navbar_admin.php';
                 </button>
 
                 <?php
-                if ($_SESSION['book_status'] == 'N') {
-                    ?>
-                    <button type="button" class="btn btn-primary" onclick="insertBookingDetail()"><i
-                                class="fa fa-check"></i>
-                        สมัครห้อง
-                    </button>
-                    <?php
-                }else{
-                ?>
-                    <button type="button" class="btn btn-outline-warning" disabled ><i
-                                class="fa fa-times"></i>
-                        คุณได้สมัครไว้แล้ว
-                    </button>
-                <?php
+                if ($_SESSION['userType'] == 'N') {
+                    if ($_SESSION['book_status'] == 'N') {
+                        ?>
+                        <button type="button" class="btn btn-primary" onclick="insertBookingDetail()"><i
+                                    class="fa fa-check"></i>
+                            สมัครห้อง
+                        </button>
+                        <?php
+                    } else {
+                        ?>
+                        <button type="button" class="btn btn-outline-warning" disabled><i
+                                    class="fa fa-times"></i>
+                            คุณได้สมัครไว้แล้ว
+                        </button>
+                        <?php
+                    }
                 }
                 ?>
             </div>
