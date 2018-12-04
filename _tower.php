@@ -2,6 +2,9 @@
 include '__connect.php';
 include '__checkSession.php';
 
+if($_SESSION['userType'] == 'S'){
+    header("Location: _home.php");
+}
 if (isset($_POST['insertBooking'])) {
 
 }
@@ -34,6 +37,7 @@ include '__navbar_admin.php';
             <div class="row" align="center">
                 <div class=" col-3 col-sm col-md col-lg">
                     <div class="img-area">
+
                         <a href="_tower.php?type=M"> <img src="img/man.png" class="image"
                                                           width="125" height="125">
                             <div class="overlay bg-info ">
@@ -66,7 +70,15 @@ include '__navbar_admin.php';
         </div>
         <div class="card-body">
             <div style="width: 85%" class="mx-auto">
+
+                <?php
+                if($_SESSION['userType']=='A'){
+                ?>
                 <a class="btn btn-sm btn-primary text-white" style="float: left" onclick="window.location = '_tower_insert.php'"><i class="fa fa-plus"></i> เพิ่มข้อมมูลหอพัก</a>
+
+                    <?php
+                }
+                ?>
                 <div class="table-responsive">
                     <hr>
                 <table id="reportContentList" class="table table-bordered rounded">
@@ -76,7 +88,10 @@ include '__navbar_admin.php';
                         <th>เบอร์โทร</th>
                         <th>สถานะ</th>
                         <th>ห้องพัก</th>
-                        <th></th>
+
+                        <?php
+                        if($_SESSION['userType']=='A'){
+                        ?>  <th></th> <?php }?>
                     </tr>
                     </thead>
                     <tbody>
@@ -100,7 +115,10 @@ include '__navbar_admin.php';
                             <td><?php echo $temp['tel'] ?></td>
                             <td><?php echo $temp['status'] ?></td>
                             <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_room.php?tower_no=<?php echo $temp['tower_no']?>&type=<?php echo $temp['type']?>'"><i class="fa fa-search"></i> ดูข้อมูลห้องพัก</a></td>
-                            <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_tower_insert.php?tower_no=<?php echo $temp['tower_no']?>&type=<?php echo $temp['type']?>'"><i class="fa fa-edit"></i> แก้ไขหอพัก</a></td>
+
+                            <?php
+                            if($_SESSION['userType']=='A'){
+                            ?> <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_tower_insert.php?tower_no=<?php echo $temp['tower_no']?>&type=<?php echo $temp['type']?>'"><i class="fa fa-edit"></i> แก้ไขหอพัก</a></td><?php }?>
                         </tr>
                         <?php
                     }

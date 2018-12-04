@@ -1,7 +1,9 @@
 <?php
 include '__connect.php';
 include '__checkSession.php';
-
+if($_SESSION['userType'] == 'S'){
+    header("Location: _home.php");
+}
 
 $sql = "select b.start_date,
        b.end_date,
