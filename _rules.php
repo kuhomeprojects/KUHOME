@@ -43,6 +43,10 @@ include '__navbar_admin.php';
 ?>
 
 
+<?php
+if($_SESSION['userType']!='N'){
+?>
+
 <div class="container-fluid" style="margin-top: 10px; margin-bottom: 10px;">
     <div class="card">
         <div class="card-header">
@@ -52,6 +56,10 @@ include '__navbar_admin.php';
         </div>
         <div class="card-body">
             <div class="row" align="center">
+
+                <?php
+                if ($_SESSION['userType'] == 'A'){
+                    ?>
                 <div class=" col col-sm col-md col-lg">
                     <div class="img-area">
                         <a href="_rules_insert.php?rule=true">
@@ -62,16 +70,23 @@ include '__navbar_admin.php';
                         </a>
                     </div>
                 </div>
-                <div class=" col col-sm col-md col-lg">
-                    <div class="img-area">
-                        <a href="_score.php">
-                            <img src="img/blacklist.png" class="image" width="125" height="125">
-                            <div class="overlay bg-info ">
-                                <div class="text"> หักคะแนน</div>
-                            </div>
-                        </a>
+                <?php
+                }
+                if ($_SESSION['userType'] == 'S') {
+                    ?>
+                    <div class=" col col-sm col-md col-lg">
+                        <div class="img-area">
+                            <a href="_score.php">
+                                <img src="img/blacklist.png" class="image" width="125" height="125">
+                                <div class="overlay bg-info ">
+                                    <div class="text"> หักคะแนน</div>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                    <?php
+                }
+                ?>
                 <div class=" col col-sm col-md col-lg">
                     <div class="img-area">
                         <a href="_rules.php?blacklist=true">
@@ -82,9 +97,16 @@ include '__navbar_admin.php';
                         </a>
                     </div>
                 </div>
+                <?php
+
+                ?>
             </div>
         </div>
     </div>
+
+    <?php
+    }
+    ?>
     <br>
     <?php
     if (isset($_GET['blacklist'])) { ?>
@@ -109,7 +131,7 @@ include '__navbar_admin.php';
                                 <th>กฏข้อที่</th>
                                 <th>รายละเอียด</th>
                                 <th>หักคะแนนโดย</th>
-                                <th></th>
+                            <?php if($_SESSION['userType']=='A'){?>    <th></th><?php } ?>
                             </tr>
                             </thead>
                             <tbody>
@@ -150,9 +172,9 @@ inner join user u on u.username = h.action_by";
                                     <th><?php echo $rule_no; ?></th>
                                     <th><?php echo $detail; ?></th>
                                     <th><?php echo $action_by ?></th>
-                                    <td><a class="btn btn-sm btn-primary text-white"
+                                    <?php if($_SESSION['userType']=='A'){?>          <td><a class="btn btn-sm btn-primary text-white"
                                            onclick="if(confirm('คุณต้องการลบรายการนี้ ?'))window.location ='_rules.php?blacklist=true&id=<?php echo $temp['id'] ?>'"><i
-                                                    class="fa fa-edit"></i> ลบ</a></td>
+                                                    class="fa fa-edit"></i> ลบ</a></td><?php } ?>
                                 </tr>
                                 <?php
                             }
@@ -188,7 +210,7 @@ inner join user u on u.username = h.action_by";
                                 <th>รายละเอียด</th>
                                 <th>คะแนน</th>
                                 <th>หมายเหตุ</th>
-                                <th></th>
+                                <?php if($_SESSION['userType']=='A'){?>         <th></th> <?php }?>
                             </tr>
                             </thead>
                             <tbody>
@@ -204,9 +226,9 @@ inner join user u on u.username = h.action_by";
                                     <td><?php echo $temp['detail'] ?></td>
                                     <td><?php echo $temp['score'] ?></td>
                                     <td><?php echo $temp['remark'] ?></td>
-                                    <td><a class="btn btn-sm btn-primary text-white"
+                                    <?php if($_SESSION['userType']=='A'){?>       <td><a class="btn btn-sm btn-primary text-white"
                                            onclick="window.location ='_rules_insert.php?rule_no=<?php echo $temp['rule_no'] ?>'"><i
-                                                    class="fa fa-edit"></i> แก้ไขข้อมูล</a></td>
+                                                    class="fa fa-edit"></i> แก้ไขข้อมูล</a></td><?php }?>
                                 </tr>
                                 <?php
                             }
