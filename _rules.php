@@ -2,8 +2,27 @@
 include '__connect.php';
 include '__checkSession.php';
 
-if (isset($_POST['insertBooking'])) {
+if (isset($_GET['id'])) {
+    $id = $_GET['id'];
+    $sql = "DELETE FROM `score_history` WHERE `id` = '$id'";
+    $query = mysqli_query($conn, $sql);
+    if ($query) {
+        $_GET['blacklist'] = true;
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>สำเร็จ!</strong> ข้อมูลการหักคะแนนสำเร็จ
+                    </div>';
 
+    } else {
+        echo '<div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin-top: 10px;">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                        </button>
+                        <strong>ไม่สำเร็จ!</strong> การลบข้อมูลการหักคะแนนไม่ถูกต้อง
+                    </div>';
+    }
 }
 ?>
 <!Document>
@@ -33,9 +52,9 @@ include '__navbar_admin.php';
         </div>
         <div class="card-body">
             <div class="row" align="center">
-                <div class=" col-3 col-sm col-md col-lg">
+                <div class=" col col-sm col-md col-lg">
                     <div class="img-area">
-                        <a href="_rules_insert.php">
+                        <a href="_rules_insert.php?rule=true">
                             <img src="img/rule.png" class="image" width="125" height="125">
                             <div class="overlay bg-info ">
                                 <div class="text"> เพิ่ม/แก้ไขกฏเกณฑ์และข้อบังคับ</div>
@@ -43,7 +62,7 @@ include '__navbar_admin.php';
                         </a>
                     </div>
                 </div>
-                <div class=" col-3 col-sm col-md col-lg">
+                <div class=" col col-sm col-md col-lg">
                     <div class="img-area">
                         <a href="_score.php">
                             <img src="img/blacklist.png" class="image" width="125" height="125">
@@ -53,60 +72,158 @@ include '__navbar_admin.php';
                         </a>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="footer bg-warning text-white">
-        </div>
-    </div>
-<br>
-    <div class="card">
-        <div class="card-header">
-            <nav aria-label="breadcrumb  bg-dark">
-
-                <h5>กฏเกณฑ์และข้อบังคับ</h5>
-
-            </nav>
-        </div>
-        <div class="card-body">
-            <div style="width: 85%" class="mx-auto">
-                <div class="table-responsive">
-                    <table id="reportContentList" class="table table-bordered rounded">
-                        <thead>
-                        <tr>
-                            <th>ลำดับ</th>
-                            <th>รายละเอียด</th>
-                            <th>คะแนน</th>
-                            <th>หมายเหตุ</th>
-                            <th></th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        $sql = "select * from rule";
-                        $count = 0;
-                        $result = mysqli_query($conn, $sql);
-                        while ($temp = mysqli_fetch_array($result)) {
-                            $count++;
-                            ?>
-                            <tr>
-                                <td><?php echo $count ?></td>
-                                <td><?php echo $temp['detail'] ?></td>
-                                <td><?php echo $temp['score'] ?></td>
-                                <td><?php echo $temp['remark'] ?></td>
-                                <td><a class="btn btn-sm btn-primary text-white" onclick="window.location ='_rules_insert.php?rule_no=<?php echo $temp['rule_no']?>'"><i class="fa fa-edit"></i> แก้ไขข้อมูล</a></td>
-                            </tr>
-                            <?php
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+                <div class=" col col-sm col-md col-lg">
+                    <div class="img-area">
+                        <a href="_rules.php?blacklist=true">
+                            <img src="img/listscore.png" class="image" width="125" height="125">
+                            <div class="overlay bg-info ">
+                                <div class="text"> รายชื่อนิสิตที่ถูกหักคะแนน</div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
-
-        </div>
-        <div class="footer bg-warning text-white">
-
         </div>
     </div>
+    <br>
+    <?php
+    if (isset($_GET['blacklist'])) { ?>
+
+        <div class="card">
+            <div class="card-header">
+                <nav aria-label="breadcrumb  bg-dark">
+                    <h5>กฏเกณฑ์และข้อบังคับ</h5>
+                </nav>
+            </div>
+            <div class="card-body">
+                <div style="width: 85%" class="mx-auto">
+                    <div class="table-responsive">
+                        <table id="reportContentList" class="table table-bordered rounded">
+                            <thead>
+                            <tr>
+                                <th>วันที่ถูกหักคะแนน</th>
+                                <th>รหัสนิสิต</th>
+                                <th>ชื่อนิสิต</th>
+                                <th>คณะ</th>
+                                <th>สาขา</th>
+                                <th>กฏข้อที่</th>
+                                <th>รายละเอียด</th>
+                                <th>หักคะแนนโดย</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $sql = "select h.id,
+  h.action_date,
+  s.code,
+  s.name as student_name,
+  s.department,
+       s.major,
+       r.rule_no,
+       r.detail,
+       u.name as action_by
+from score_history h
+inner join student s on s.code = h.student_code
+inner join rule r on r.rule_no = h.rule_no
+inner join user u on u.username = h.action_by";
+
+                            $result = mysqli_query($conn, $sql);
+                            while ($temp = mysqli_fetch_array($result)) {
+                                $id = $temp['id'];
+                                $action_date = $temp['action_date'];
+                                $code = $temp['code'];
+                                $student_name = $temp['student_name'];
+                                $department = $temp['department'];
+                                $major = $temp['major'];
+                                $rule_no = $temp['rule_no'];
+                                $detail = $temp['detail'];
+                                $action_by = $temp['action_by'];
+                                ?>
+                                <tr>
+
+                                    <th><?php echo $action_date; ?></th>
+                                    <th><?php echo $code; ?></th>
+                                    <th><?php echo $student_name; ?></th>
+                                    <th><?php echo $department; ?></th>
+                                    <th><?php echo $major; ?></th>
+                                    <th><?php echo $rule_no; ?></th>
+                                    <th><?php echo $detail; ?></th>
+                                    <th><?php echo $action_by ?></th>
+                                    <td><a class="btn btn-sm btn-primary text-white"
+                                           onclick="if(confirm('คุณต้องการลบรายการนี้ ?'))window.location ='_rules.php?blacklist=true&id=<?php echo $temp['id'] ?>'"><i
+                                                    class="fa fa-edit"></i> ลบ</a></td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer bg-warning text-white">
+
+            </div>
+        </div>
+
+
+    <?php } else { ?>
+        <div class="card">
+            <div class="card-header">
+                <nav aria-label="breadcrumb  bg-dark">
+
+                    <h5>กฏเกณฑ์และข้อบังคับ</h5>
+
+                </nav>
+            </div>
+            <div class="card-body">
+                <div style="width: 85%" class="mx-auto">
+                    <div class="table-responsive">
+                        <table id="reportContentList" class="table table-bordered rounded">
+                            <thead>
+                            <tr>
+                                <th>ลำดับ</th>
+                                <th>รายละเอียด</th>
+                                <th>คะแนน</th>
+                                <th>หมายเหตุ</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            $sql = "select * from rule";
+                            $count = 0;
+                            $result = mysqli_query($conn, $sql);
+                            while ($temp = mysqli_fetch_array($result)) {
+                                $count++;
+                                ?>
+                                <tr>
+                                    <td><?php echo $count ?></td>
+                                    <td><?php echo $temp['detail'] ?></td>
+                                    <td><?php echo $temp['score'] ?></td>
+                                    <td><?php echo $temp['remark'] ?></td>
+                                    <td><a class="btn btn-sm btn-primary text-white"
+                                           onclick="window.location ='_rules_insert.php?rule_no=<?php echo $temp['rule_no'] ?>'"><i
+                                                    class="fa fa-edit"></i> แก้ไขข้อมูล</a></td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="footer bg-warning text-white">
+
+            </div>
+        </div>
+        <?php
+    }
+    ?>
+
 </body>
 </html>
