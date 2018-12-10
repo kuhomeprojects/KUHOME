@@ -20,7 +20,7 @@ if($_SESSION['userType'] != 'A'){
     header("Location: _home.php");
 }
 ?>
-<div class="container-fluid" style="margin-top: 10px;">
+<div class="container-fluid" style="margin-top: 10px; margin-bottom: 100px;">
 
         <div class="card">
             <div class="card-header">

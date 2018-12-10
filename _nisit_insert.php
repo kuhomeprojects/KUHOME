@@ -93,6 +93,7 @@ include '__checkSession.php';
                         </button>
                         <strong>สำเร็จ!</strong> เพิ่มข้อมูลนิสิตแล้ว
                     </div>';
+            echo '<script>alert("เพิ่มข้อมูลนิสิตแล้ว"); window.location = "_nisit.php";</script>';
         } else {
 
         }
@@ -128,7 +129,7 @@ include '__checkSession.php';
                     parent_name = '$parent_name',
                     teacher_name = '$teacher_name',
                     password = '$password',
-                    parent_tel = '$parent_name',
+                    parent_tel = '$parent_tel',
                     department = '$department'";
 
 
@@ -185,7 +186,7 @@ include '__checkSession.php';
 
             $('#birthdate').datepicker({
                 uiLibrary: 'bootstrap4',
-                format: 'dd/mm/yyyy'
+                format: 'yyyy/mm/dd'
             });
 
             $(document).on('change', '.btn-file :file', function () {
