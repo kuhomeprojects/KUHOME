@@ -88,8 +88,9 @@ if (isset($_POST['insertRoom'])) {
     $status = $_POST['status'];
     $type = $_POST['check_type'];
     $cost = $_POST['cost'];
+    $type = $_GET['type'];
 
-    $sql = "UPDATE `room` SET `room_no` = '$room_no', `tower_no` = '$tower_no', `size` = '$size', `status` = '$status', `type` = '$type', `cost` = '$cost' WHERE `room`.`room_no` = '$room_no' AND `room`.`tower_no` = '$tower_no'";
+    $sql = "UPDATE `room` SET `room_no` = '$room_no', `tower_no` = '$tower_no', `size` = '$size', `status` = '$status', `type` = '$type', `cost` = '$cost' WHERE `room`.`room_no` = '$room_no' AND `room`.`tower_no` = '$tower_no' AND `room`.`type` = '$type'";
     $query = mysqli_query($conn, $sql);
     if ($query) {
         $_GET['type'] = $type;
@@ -173,7 +174,7 @@ include '__navbar_admin.php';
                         <div class="col col-sm col-lg col-md">
                             <div class="form-group">
                                 <label>เจำนวนที่เข้าพักได้ :</label>
-                                <input name="size" id="size" class="form-control" required
+                                <input name="size" id="size" type="number" maxlength="2" class="form-control" required
                                        placeholder="จำนวนของผู้เข้าพัก" value="<?php echo $size; ?>">
                             </div>
                         </div>
