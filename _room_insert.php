@@ -93,6 +93,12 @@ if (isset($_POST['insertRoom'])) {
     $sql = "UPDATE `room` SET `room_no` = '$room_no', `tower_no` = '$tower_no', `size` = '$size', `status` = '$status', `type` = '$type', `cost` = '$cost' WHERE `room`.`room_no` = '$room_no' AND `room`.`tower_no` = '$tower_no' AND `room`.`type` = '$type'";
     $query = mysqli_query($conn, $sql);
     if ($query) {
+
+        $sql = "UPDATE report SET room_no = '$room_no' WHERE  room_no='$room_no' and type='$type' and tower_no = '$tower_no'";
+        $query = mysqli_query($conn, $sql);
+        $sql = "UPDATE booking_detail SET room_no = '$room_no' WHERE  room_no='$room_no' and type='$type' and tower_no = '$tower_no'";
+        $query = mysqli_query($conn, $sql);
+
         $_GET['type'] = $type;
         $_GET['tower_no'] = $tower_no;
         echo '<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">

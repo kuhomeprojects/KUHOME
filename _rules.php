@@ -42,7 +42,6 @@ if (isset($_GET['id'])) {
 include '__navbar_admin.php';
 ?>
 
-<<<<<<< HEAD
 
 <?php
 if($_SESSION['userType']!='N'){
@@ -57,10 +56,9 @@ if($_SESSION['userType']!='N'){
         </div>
         <div class="card-body">
             <div class="row" align="center">
-
                 <?php
-                if ($_SESSION['userType'] == 'A'){
-                    ?>
+                if($_SESSION['userType']=='A'){
+                ?>
                 <div class=" col col-sm col-md col-lg">
                     <div class="img-area">
                         <a href="_rules_insert.php?rule=true">
@@ -73,8 +71,8 @@ if($_SESSION['userType']!='N'){
                 </div>
                 <?php
                 }
-                if ($_SESSION['userType'] == 'S') {
-                    ?>
+                ?>
+
                     <div class=" col col-sm col-md col-lg">
                         <div class="img-area">
                             <a href="_score.php">
@@ -85,9 +83,6 @@ if($_SESSION['userType']!='N'){
                             </a>
                         </div>
                     </div>
-                    <?php
-                }
-                ?>
                 <div class=" col col-sm col-md col-lg">
                     <div class="img-area">
                         <a href="_rules.php?blacklist=true">
@@ -98,9 +93,6 @@ if($_SESSION['userType']!='N'){
                         </a>
                     </div>
                 </div>
-                <?php
-
-                ?>
             </div>
         </div>
     </div>

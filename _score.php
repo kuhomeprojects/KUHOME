@@ -130,6 +130,7 @@ if ($_SESSION['userType'] != 'A') {
         $("#exampleModal3").modal();
     }
 </script>
+
 <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog"
      aria-labelledby="exampleModal3Label" aria-hidden="true">
     <div class="modal-dialog" role="document">

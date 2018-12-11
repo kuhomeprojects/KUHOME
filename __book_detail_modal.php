@@ -1,8 +1,9 @@
 <?php
-$sqlBookingDeatil = "SELECT b.*,type.full_status as tower_type,r.cost,s.full_status as payment_status FROM booking_detail b 
+$sqlBookingDeatil = "SELECT b.*,type.full_status as tower_type,t.tower_name,r.size,r.cost,s.full_status as payment_status FROM booking_detail b 
 INNER JOIN STATUS type On type.status = b.type
 INNER JOIN STATUS s ON s.status = b.status
 INNER JOIN ROOM r ON r.room_no = b.room_no
+INNER JOIN TOWER t ON t.tower_no = t.tower_no
 WHERE student_code='".$_SESSION['code']."'";
 $queryBookDetail = mysqli_query($conn,$sqlBookingDeatil);
 $bookDetail = mysqli_fetch_assoc($queryBookDetail);
@@ -56,15 +57,15 @@ $remainDay = 7 +$day;
                             </tr>
                             <tr>
                                 <th class="bg-success text-right text-white">เลขตึก</th>
-                                <td><?php echo $bookDetail['tower_no'] ?></td>
+                                <td><?php echo $bookDetail['tower_no'].' (หอพัก'.$bookDetail['tower_name'].')' ?></td>
                             </tr>
                             <tr>
                                 <th class="bg-success text-right text-white">เลขห้อง</th>
-                                <td><?php echo $bookDetail['room_no'] ?></td>
+                                <td><?php echo $bookDetail['room_no']. ' (ขนาด '.$bookDetail['size'].' คน)' ?></td>
                             </tr>
                             <tr>
                                 <th class="bg-success text-right text-white">ราคา</th>
-                                <td><?php echo $bookDetail['cost'] ?></td>
+                                <td><?php echo $bookDetail['cost'].' ('.$bookDetail['cost']/$bookDetail['size'].' บาท/คน)' ?></td>
                             </tr>
                             <tr>
                                 <th class="bg-success text-right text-white">เหลือเวลาชำระค่าธรรมเนียม</th>

@@ -70,6 +70,9 @@ if ($_SESSION['userType'] == 'A') {
                         </a>
                     </div>
                 </div>
+                <?php
+                if($_SESSION['userType']=='N'){
+                ?>
                 <div class=" col-3 col-sm col-md col-lg">
                     <div class="img-area ">
                         <a data-toggle="modal" data-target="#reportModal"> <img src="img/icon/uninsurance.png"
@@ -81,6 +84,9 @@ if ($_SESSION['userType'] == 'A') {
                         </a>
                     </div>
                 </div>
+                <?php
+                }
+                ?>
             </div>
         </div>
     </div>

@@ -36,6 +36,15 @@
         }
     }
 </script>
+<?php
+$sqlReportDetail = "SELECT b.*,s.full_status as tower_type ,t.tower_name
+from booking_detail b 
+inner join status s on s.status = b.type 
+inner join tower t on t.tower_no = b.tower_no
+where b.student_code = '".$_SESSION['code']."'  ";
+$resultReportDetail  = mysqli_query($conn,$sqlReportDetail);
+$reportDetail = mysqli_fetch_assoc($resultReportDetail );
+?>
 <form class="simple-form">
 <div class="modal fade " id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel"
      aria-hidden="true">
@@ -55,24 +64,22 @@
 
                         <div class="form-group">
                             <label><strong>ตึก</strong></label>
-                            <select class="custom-select" id="type" name="type">
-                                <option value="F">หอพักหญิง</option>
-                                <option value="M">หอพักชาย</option>
-                            </select>
+                            <input class="form-control"  id="type" name="type" value="<?php echo $reportDetail['tower_type'];?>" readonly>
                         </div>
                     </div>
                     <div class="col col-sm-3 col-md-3 col-xs-3 col-lg-3">
 
                         <div class="form-group">
                             <label><strong>เลขตึก</strong></label>
-                            <input class="form-control" id="tower" type="text" name="tower" required>
+                            <input class="form-control" type="text" value="<?php echo $reportDetail['tower_no'].' (หอพัก '.$reportDetail['tower_name'].')';?>" readonly>
+                            <input class="form-control" type="hidden" id="tower" name="tower" value="<?php echo $reportDetail['tower_no'];?>" >
                         </div>
                     </div>
                     <div class="col col-sm-3 col-md-3 col-xs-3 col-lg-3">
 
                         <div class="form-group">
                             <label><strong>เลขห้อง</strong></label>
-                            <input class="form-control" id="room" type="text" name="room" required>
+                            <input class="form-control" id="room" type="text" name="room" value="<?php echo $reportDetail['room_no'];?>" readonly>
                         </div>
                     </div>
                 </div>

@@ -73,6 +73,16 @@ if (isset($_POST['insertTower'])) {
     $sql = "UPDATE `tower` SET `tower_no` = '$tower_no', `type` = '$type', `tel` = '$tel', `status` = '$status', `cost` = '$cost', `tower_name` = '$tower_name' WHERE `tower`.`tower_no` = '$check_tower_no' AND `tower`.`type` = '$check_type';";
     $query = mysqli_query($conn, $sql);
     if ($query) {
+
+        $sql = "UPDATE room SET tower_no = '$tower_no' WHERE  room_no='$room_no' and type='$type'";
+        $query = mysqli_query($conn, $sql);
+        $sql = "UPDATE report SET tower_no = '$tower_no' WHERE  room_no='$room_no' and type='$type' and tower_no = '$tower_no'";
+        $query = mysqli_query($conn, $sql);
+        $sql = "UPDATE booking SET tower_no = '$tower_no' WHERE  tower_type='$type' and tower_no = '$tower_no'";
+        $query = mysqli_query($conn, $sql);
+        $sql = "UPDATE booking_detail SET tower_no = '$tower_no' WHERE  room_no='$room_no' and type='$type' and tower_no = '$tower_no'";
+        $query = mysqli_query($conn, $sql);
+
         echo '<div class="alert alert-success alert-dismissible fade show" role="alert" style="margin-top: 10px;">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>

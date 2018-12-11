@@ -105,6 +105,7 @@ if (isset($_POST['editData'])) {
                         <th>ลำดับ</th>
                         <th>หอพัก</th>
                         <th>หมายเลข</th>
+                        <th>ชื่อหอพัก</th>
                         <th>เวลาเปิดจอง</th>
                         <th>เวลาปิดจอง</th>
                         <th>ปีการศึกษา</th>
@@ -115,7 +116,9 @@ if (isset($_POST['editData'])) {
                     <tbody>
                     <?php
                     $count = 0;
-                    $sql = "SELECT b.*,s.full_semester,t.full_status FROM BOOKING b INNER join semeter_detail s ON b.semester = s.semester INNER join status t on t.status = b.tower_type";
+                    $sql = "SELECT b.*,s.full_semester,t.full_status,w.tower_name FROM BOOKING b 
+                            INNER JOIN tower w ON w.tower_no = b.tower_no and w.type = b.tower_type
+                            INNER join semeter_detail s ON b.semester = s.semester INNER join status t on t.status = b.tower_type";
                     $result = mysqli_query($conn, $sql);
                     while ($temp = mysqli_fetch_array($result)) {
                         $count++;
@@ -123,7 +126,8 @@ if (isset($_POST['editData'])) {
                         <tr>
                             <td><?php echo $count ?></td>
                             <td><?php echo $temp['full_status'] ?></td>
-                            <td><?php echo $temp['tower_no'] ?></td>
+                            <td><?php echo $temp['tower_no']?></td>
+                            <td><?php echo $temp['tower_name'] ?></td>
                             <td><?php echo $temp['start_date'] ?></td>
                             <td><?php echo $temp['end_date'] ?></td>
                             <td><?php echo $temp['full_semester'] ?></td>

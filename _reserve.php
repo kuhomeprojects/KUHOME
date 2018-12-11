@@ -12,7 +12,7 @@ $sql = "select b.start_date,
        sex.full_status as tower_type,
        r.type as type,
        r.size,
-       s.full_status as room_staus,
+       s.status,
        r.cost,
        r.current_size
 from room r
@@ -21,7 +21,7 @@ from room r
        inner join booking b on b.tower_no = r.tower_no
                                  and b.tower_type = r.type
                                  and sysdate() >= b.start_date and sysdate() <= b.end_date
-                                 where r.status = 'A'";
+                                 where r.status = 'N'";
 $Stype = '';
 $STowerNo = '';
 $SRoomNo = '';
@@ -193,7 +193,15 @@ include '__navbar_admin.php';
                             <td><?php echo $temp['tower_no'] ?></td>
                             <td><?php echo $temp['room_no'] ?></td>
                             <td><?php echo $temp['size'] ?></td>
-                            <td><?php echo $temp['room_staus'] ?></td>
+                            <td><?php
+                                if($temp['status']=='N'){
+                                    echo 'ว่าง';
+                                }else{
+                                    echo 'เต็ม';
+                                }
+                                ?>
+
+                            </td>
                             <td><?php echo $temp['cost'] ?></td>
                             <td><?php echo $temp['current_size'] ?>/<?php echo $temp['size'] ?></td>
                             <td>

@@ -44,15 +44,13 @@
             }
             ?>
 
+            <?php
+            if ($_SESSION['userType'] == 'A' || $_SESSION['userType'] == 'S' ) {
+            ?>
+
             <li class="nav-item">
                 <a class="nav-link" href="_rules.php">กฎเกณฑ์และข้อบังคับ</a>
             </li>
-
-
-            <?php
-            if ($_SESSION['userType'] == 'N') {
-                ?>
-
 
                 <?php
             }
@@ -117,7 +115,7 @@
 </nav>
 
 
-<?php include '__report_modal.php'; ?>
+<?php if ($_SESSION['userType'] == 'N') include '__report_modal.php'; ?>
 
 <?php if ($_SESSION['type']) include '__profile_modal.php'; ?>
 
